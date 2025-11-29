@@ -1,0 +1,7 @@
+#!/bin/bash
+# YunoHost upgrade script for Taiga
+# See https://yunohost.org/en/packaging_apps_upgrade_script for details
+
+set -e
+
+echo "Upgrade script placeholder for Taiga."

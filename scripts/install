@@ -1,0 +1,98 @@
+#!/bin/bash
+# YunoHost install script for Taiga
+# See https://yunohost.org/en/packaging_apps_install_script for details
+
+# Exit on error
+set -e
+
+echo "Install script placeholder for Taiga."
+
+# YunoHost install script for Taiga
+# See https://yunohost.org/en/packaging_apps_install_script for details
+
+# Check arguments
+domain=$YNH_APP_ARG_DOMAIN
+path_url=$YNH_APP_ARG_PATH
+app=taiga
+app_user=taiga
+final_path=/var/www/$app
+
+if [ -z "$domain" ] || [ -z "$path_url" ]; then
+	ynh_die "Missing required arguments: domain or path."
+fi
+
+# Install system dependencies
+ynh_install_app_dependencies python3 python3-venv python3-pip python3-dev build-essential libpq-dev git redis-server rabbitmq-server postgresql nginx
+
+# Create system user
+ynh_system_user_create $app_user
+
+# Create app directory
+ynh_setup_source $final_path
+
+# Clone Taiga backend if not present
+if [ ! -d "$final_path/taiga-back" ]; then
+	sudo -u $app_user git clone https://github.com/taigaio/taiga-back.git $final_path/taiga-back
+fi
+
+echo "[INFO] Taiga backend cloned to $final_path/taiga-back."
+
+
+# Set up Python virtual environment
+sudo -u $app_user python3 -m venv $final_path/venv
+sudo -u $app_user $final_path/venv/bin/pip install --upgrade pip
+sudo -u $app_user $final_path/venv/bin/pip install -r $final_path/taiga-back/requirements.txt
+
+# Set up PostgreSQL database and user
+db_name=taiga
+db_user=taiga
+db_pwd=$(ynh_string_random)
+ynh_psql_create_db $db_name $db_user $db_pwd
+
+# Set up Redis (already installed)
+# No extra config needed for default local instance
+
+# Set up RabbitMQ user and vhost
+rmq_user=taiga
+rmq_pwd=$(ynh_string_random)
+sudo rabbitmqctl add_user $rmq_user $rmq_pwd || true
+sudo rabbitmqctl add_vhost $rmq_user || true
+sudo rabbitmqctl set_permissions -p $rmq_user $rmq_user ".*" ".*" ".*"
+
+# Generate Taiga config (placeholder, should be templated)
+cat > $final_path/taiga-back/settings/local.py <<EOF
+from .common import *
+
+DEBUG = False
+PUBLIC_REGISTER_ENABLED = True
+SECRET_KEY = '$(ynh_string_random 32)'
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql',
+		'NAME': '$db_name',
+		'USER': '$db_user',
+		'PASSWORD': '$db_pwd',
+		'HOST': 'localhost',
+		'PORT': '',
+	}
+}
+REDIS_URL = 'redis://localhost:6379/0'
+RABBITMQ_URL = 'amqp://$rmq_user:$rmq_pwd@localhost:5672/$rmq_user'
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+SITES = {
+	'front': {
+		'scheme': 'https',
+		'domain': '$domain',
+		'port': 443,
+	}
+}
+EOF
+
+# Set permissions
+chown -R $app_user: $final_path
+
+# Configure nginx (placeholder, should use YunoHost helpers)
+ynh_add_nginx_config
+
+echo "[INFO] Taiga install complete. Please review configs and finalize frontend setup."

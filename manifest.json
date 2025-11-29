@@ -1,0 +1,27 @@
+{
+  "name": "Taiga",
+  "id": "taiga",
+  "packaging_format": 1,
+  "description": "Agile project management platform (YunoHost package)",
+  "version": "0.1.0~ynh1",
+  "url": "https://taiga.io/",
+  "license": "AGPL-3.0",
+  "maintainer": "Your Name <your@email.com>",
+  "requirements": [],
+  "multi_instance": false,
+  "services": ["nginx", "postgresql", "redis", "rabbitmq"],
+  "arguments": [
+    {
+      "name": "domain",
+      "type": "domain",
+      "ask": "On which domain should Taiga be installed?",
+      "example": "domain.tld"
+    },
+    {
+      "name": "path",
+      "type": "path",
+      "ask": "On which path should Taiga be accessible?",
+      "example": "/taiga"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+# YunoHost remove script for Taiga
+# See https://yunohost.org/en/packaging_apps_remove_script for details
+
+set -e
+
+echo "Remove script placeholder for Taiga."
