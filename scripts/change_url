@@ -1,0 +1,4 @@
+#!/bin/bash
+# YunoHost change_url script for Taiga
+set -e
+# Placeholder: Add change_url logic here
