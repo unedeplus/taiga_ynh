@@ -1,0 +1,5 @@
+#!/bin/bash
+# YunoHost restore script for Taiga
+# See https://yunohost.org/en/packaging_apps_restore_script for details
+set -e
+# Placeholder: Add restore logic here

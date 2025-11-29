@@ -1,0 +1,5 @@
+#!/bin/bash
+# YunoHost backup script for Taiga
+# See https://yunohost.org/en/packaging_apps_backup_script for details
+set -e
+# Placeholder: Add backup logic here
