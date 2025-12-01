@@ -13,8 +13,18 @@ secret_key=$(ynh_string_random --length=50)
 rabbitmq_pwd=$(ynh_string_random --length=32)
 rabbitmq_user=$app
 
-# Debug: Check if database variables are set
-ynh_print_info "Database variables: db_name=$db_name, db_user=$db_user, db_pwd=(${#db_pwd} chars)"
+# YunoHost auto-provisions database but variables may not be in environment
+# Explicitly retrieve them from app settings (set by provision_database)
+db_name=$(ynh_app_setting_get --key=db_name)
+db_user=$(ynh_app_setting_get --key=db_user)
+db_pwd=$(ynh_app_setting_get --key=db_pwd)
+
+# If not found in settings, use defaults (should not happen with resources.database)
+db_name="${db_name:-$app}"
+db_user="${db_user:-$app}"
+
+# Debug output
+ynh_print_info "Database: db_name=$db_name, db_user=$db_user, pwd_length=${#db_pwd}"
 
 # Store settings
 ynh_app_setting_set --key=secret_key --value="$secret_key"
