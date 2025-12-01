@@ -97,12 +97,17 @@ fi
 # Set ownership of install directory so app user can build
 chown -R "$app:$app" "$install_dir"
 
-# Build frontend (with memory-friendly npm settings)
+# Build frontend (with increased Node.js heap memory)
 pushd "$install_dir/taiga-front"
-    # Use npm install instead of npm ci (more memory efficient for large dependency trees)
-    # Limit concurrent downloads to reduce memory usage
-    sudo -u "$app" npm install --no-audit --no-fund --prefer-offline --loglevel=error
-    sudo -u "$app" npm run build
+    # Increase Node.js heap size to 2GB (default is ~512MB on 32-bit, 1.4GB on 64-bit)
+    # This prevents "JavaScript heap out of memory" during npm install
+    export NODE_OPTIONS="--max-old-space-size=2048"
+    
+    # Use npm install with memory-friendly settings
+    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install --no-audit --no-fund --prefer-offline --loglevel=error
+    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm run build
+    
+    unset NODE_OPTIONS
 popd
 
 # Copy built frontend to final location
