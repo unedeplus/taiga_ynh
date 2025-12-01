@@ -29,6 +29,10 @@ ynh_app_setting_set --key=db_pwd --value="$db_pwd"
 #=================================================
 ynh_script_progression "Creating PostgreSQL database..." --weight=1
 
+# Drop existing user/db from failed installs to ensure clean state
+sudo --login --user=postgres psql -c "DROP DATABASE IF EXISTS $db_name;" 2>/dev/null || true
+sudo --login --user=postgres psql -c "DROP USER IF EXISTS $db_user;" 2>/dev/null || true
+
 ynh_psql_create_user "$db_user" "$db_pwd"
 ynh_psql_create_db "$db_name" "$db_user"
 
@@ -71,8 +75,15 @@ python3 -m venv "$install_dir/venv"
 #=================================================
 ynh_script_progression "Adding Taiga configuration files..." --weight=1
 
+# Debug: verify db_pwd is set before config generation
+ynh_print_info "DEBUG: About to generate config with db_pwd length=${#db_pwd}"
+
 # Backend configuration
 ynh_config_add --template="local.py" --destination="$install_dir/taiga-back/settings/local.py"
+
+# Debug: check what was actually written to config
+ynh_print_info "DEBUG: Config file created, checking PASSWORD line:"
+grep "PASSWORD" "$install_dir/taiga-back/settings/local.py" || true
 
 # Set proper permissions on config
 chmod 600 "$install_dir/taiga-back/settings/local.py"
