@@ -75,6 +75,9 @@ if ! command -v node &> /dev/null || [[ $(node --version | cut -d'v' -f2 | cut -
     ynh_apt install nodejs
 fi
 
+# Set ownership of install directory so app user can build
+chown -R "$app:$app" "$install_dir"
+
 # Build frontend
 pushd "$install_dir/taiga-front"
     sudo -u "$app" npm ci
