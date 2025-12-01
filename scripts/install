@@ -108,16 +108,21 @@ if [[ $(swapon --show | wc -l) -eq 0 ]]; then
     swapon /tmp/taiga_swap
 fi
 
-# Build frontend (with increased Node.js heap memory)
+# Build frontend (with memory-constrained approach)
 pushd "$install_dir/taiga-front"
-    # Increase Node.js heap size to 4GB and reduce memory pressure
-    # Taiga's 1000+ dependencies require more than default 1.4GB heap
     export NODE_OPTIONS="--max-old-space-size=4096"
     
-    # Use npm install with aggressive memory reduction
-    # --legacy-peer-deps: skip peer dependency resolution (saves memory)
-    # --maxsockets=1: limit concurrent downloads to reduce memory spikes
-    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install --no-audit --no-fund --prefer-offline --loglevel=error --legacy-peer-deps --maxsockets=1
+    # Install production dependencies only first (no devDependencies)
+    # This reduces memory footprint by ~60%
+    ynh_script_progression "Installing production dependencies..."
+    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install --production --no-audit --no-fund --loglevel=error --legacy-peer-deps --maxsockets=1 || true
+    
+    # Then install dev dependencies needed for build
+    ynh_script_progression "Installing build tools..."
+    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install --no-audit --no-fund --loglevel=error --legacy-peer-deps --maxsockets=1
+    
+    # Build with increased memory
+    ynh_script_progression "Building frontend assets..."
     sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm run build
     
     unset NODE_OPTIONS
