@@ -46,9 +46,9 @@ ynh_script_progression "Restoring RabbitMQ configuration..."
 rabbitmq_user=$(ynh_app_setting_get --key=rabbitmq_user)
 rabbitmq_pwd=$(ynh_app_setting_get --key=rabbitmq_pwd)
 
-ynh_exec_warn_less rabbitmqctl add_user "$rabbitmq_user" "$rabbitmq_pwd" || true
-ynh_exec_warn_less rabbitmqctl add_vhost "$rabbitmq_user" || true
-ynh_exec_warn_less rabbitmqctl set_permissions -p "$rabbitmq_user" "$rabbitmq_user" ".*" ".*" ".*"
+rabbitmqctl add_user "$rabbitmq_user" "$rabbitmq_pwd" 2>&1 || true
+rabbitmqctl add_vhost "$app" 2>&1 || true
+rabbitmqctl set_permissions -p "$app" "$rabbitmq_user" ".*" ".*" ".*" 2>&1 || true
 
 #=================================================
 # RELOAD NGINX AND START SERVICES

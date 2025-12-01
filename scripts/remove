@@ -23,8 +23,8 @@ ynh_script_progression "Removing RabbitMQ configuration..."
 rabbitmq_user=$(ynh_app_setting_get --key=rabbitmq_user)
 
 if [ -n "$rabbitmq_user" ]; then
-    ynh_exec_warn_less rabbitmqctl delete_vhost "$rabbitmq_user" || true
-    ynh_exec_warn_less rabbitmqctl delete_user "$rabbitmq_user" || true
+    rabbitmqctl delete_vhost "$app" 2>&1 || true
+    rabbitmqctl delete_user "$rabbitmq_user" 2>&1 || true
 fi
 
 #=================================================
