@@ -77,8 +77,8 @@ fi
 
 # Build frontend
 pushd "$install_dir/taiga-front"
-    ynh_exec_as_app npm ci
-    ynh_exec_as_app npm run build
+    sudo -u "$app" npm ci
+    sudo -u "$app" npm run build
 popd
 
 # Copy built frontend to final location
@@ -95,20 +95,20 @@ ynh_script_progression "Initializing database..." --weight=5
 
 pushd "$install_dir/taiga-back"
     # Run migrations
-    ynh_exec_as_app "$install_dir/venv/bin/python" manage.py migrate --noinput
+    sudo -u "$app" "$install_dir/venv/bin/python" manage.py migrate --noinput
     
     # Collect static files
-    ynh_exec_as_app "$install_dir/venv/bin/python" manage.py collectstatic --noinput
+    sudo -u "$app" "$install_dir/venv/bin/python" manage.py collectstatic --noinput
     
     # Compile messages
-    ynh_exec_as_app "$install_dir/venv/bin/python" manage.py compilemessages
+    sudo -u "$app" "$install_dir/venv/bin/python" manage.py compilemessages
     
     # Create admin user
-    ynh_exec_as_app "$install_dir/venv/bin/python" manage.py createsuperuser \
+    sudo -u "$app" "$install_dir/venv/bin/python" manage.py createsuperuser \
         --noinput --username="$admin" --email="$admin@$domain" || true
     
     # Change admin password
-    ynh_exec_as_app "$install_dir/venv/bin/python" manage.py changepassword "$admin" <<EOF
+    sudo -u "$app" "$install_dir/venv/bin/python" manage.py changepassword "$admin" <<EOF
 $password
 $password
 EOF

@@ -22,7 +22,7 @@ ynh_nodejs_install() {
 
 # Execute command as app user
 ynh_exec_as_app() {
-    ynh_exec_as "$app" "$@"
+    sudo -u "$app" "$@"
 }
 
 #=================================================
