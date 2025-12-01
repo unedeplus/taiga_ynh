@@ -21,16 +21,52 @@ fi
 
 # Pull the official image
 echo "Pulling Docker image: ${DOCKER_IMAGE}"
+# Temporarily disable credential helpers if they're misconfigured
+export DOCKER_CONFIG="${HOME}/.docker"
+mkdir -p "$DOCKER_CONFIG"
+if [ -f "$DOCKER_CONFIG/config.json" ]; then
+    # Backup and remove credStore/credsStore temporarily
+    cp "$DOCKER_CONFIG/config.json" "$DOCKER_CONFIG/config.json.backup"
+    cat "$DOCKER_CONFIG/config.json" | grep -v '"credsStore"' | grep -v '"credStore"' > "$DOCKER_CONFIG/config.json.tmp"
+    mv "$DOCKER_CONFIG/config.json.tmp" "$DOCKER_CONFIG/config.json"
+fi
 docker pull "$DOCKER_IMAGE"
+if [ -f "$DOCKER_CONFIG/config.json.backup" ]; then
+    mv "$DOCKER_CONFIG/config.json.backup" "$DOCKER_CONFIG/config.json"
+fi
 
 # Create temporary container
 echo "Extracting assets from container..."
 CONTAINER_ID=$(docker create "$DOCKER_IMAGE")
 
 # Extract the frontend files
-mkdir -p taiga-front
-docker cp "${CONTAINER_ID}:/taiga/dist" taiga-front/
-docker cp "${CONTAINER_ID}:/usr/lib/node_modules" taiga-front/ 2>/dev/null || true
+echo "Extracting assets from container..."
+mkdir -p taiga-front/dist
+docker export "$CONTAINER_ID" > /tmp/taiga-container.tar
+
+# Extract the html directory (ignore symlink errors - they're not critical)
+cd taiga-front/dist
+tar -xf /tmp/taiga-container.tar usr/share/nginx/html --strip-components=4 2>&1 | grep -v "Cannot create symlink" || true
+
+# If extraction partially failed, try extracting specific version directory
+if [ ! -f "index.html" ]; then
+    cd ..
+    rm -rf dist
+    mkdir dist
+    cd dist
+    tar -xf /tmp/taiga-container.tar "usr/share/nginx/html/v-*" --strip-components=5 2>&1 | grep -v "Cannot create symlink" || true
+fi
+
+# Clean up
+rm /tmp/taiga-container.tar
+cd ../..
+
+# Verify extraction worked
+if [ ! -f "taiga-front/dist/index.html" ]; then
+    echo "ERROR: Extraction failed - index.html not found"
+    docker rm "$CONTAINER_ID"
+    exit 1
+fi
 
 # Clean up container
 docker rm "$CONTAINER_ID"

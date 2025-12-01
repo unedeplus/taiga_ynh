@@ -118,7 +118,8 @@ pushd "$install_dir/taiga-front"
     if [ -f "$PREBUILT_PACKAGE" ]; then
         # Use pre-built assets if available
         ynh_script_progression "Using pre-built frontend assets from $PREBUILT_PACKAGE"
-        tar xzf "$PREBUILT_PACKAGE" --strip-components=1 -C "$install_dir"
+        # Extract to parent directory, which will create taiga-front/dist structure
+        tar xzf "$PREBUILT_PACKAGE" -C "$install_dir"
         chown -R "$app:$app" "$install_dir"
     else
         # Build from source (requires 8GB+ RAM)
