@@ -73,17 +73,25 @@ ynh_script_progression "Building frontend..." --weight=10
 rm -f /usr/local/bin/node /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
 rm -rf /usr/local/lib/node_modules
 
-# Install Node.js 18 if not present
+# Install Node.js 18 and npm if not present
 if ! dpkg -l | grep -q "^ii.*nodejs.*18"; then
     ynh_script_progression "Installing Node.js $nodejs_version from NodeSource..."
     curl -fsSL https://deb.nodesource.com/setup_${nodejs_version}.x | bash -
     ynh_apt install nodejs
 fi
 
-# Verify we have Node.js 18
+# Ensure npm is installed (separate package in Debian)
+if ! command -v npm &> /dev/null; then
+    ynh_apt install npm
+fi
+
+# Verify we have Node.js 18 and npm
 node_version=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
 if [[ "$node_version" != "18" ]]; then
     ynh_die "Node.js 18 is required but version $node_version is active"
+fi
+if ! command -v npm &> /dev/null; then
+    ynh_die "npm is required but not found in PATH"
 fi
 
 # Set ownership of install directory so app user can build
