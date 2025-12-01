@@ -68,16 +68,22 @@ chmod 600 "$install_dir/taiga-back/settings/local.py"
 #=================================================
 ynh_script_progression "Building frontend..." --weight=10
 
-# Install Node.js 18 specifically (node-sass incompatible with v22+)
-current_node_version=$(node --version 2>/dev/null | cut -d'v' -f2 | cut -d'.' -f1)
-if [[ "$current_node_version" != "18" ]]; then
-    ynh_script_progression "Installing Node.js $nodejs_version..."
-    # Remove any existing nodejs first
-    apt-get remove -y nodejs npm 2>/dev/null || true
-    rm -rf /usr/local/lib/node_modules /usr/local/bin/node /usr/local/bin/npm /usr/local/bin/npx 2>/dev/null || true
-    # Install Node.js 18.x specifically
+# Ensure Node.js 18 is active (node-sass incompatible with v22+)
+# Remove /usr/local nodejs that shadows the system package
+rm -f /usr/local/bin/node /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
+rm -rf /usr/local/lib/node_modules
+
+# Install Node.js 18 if not present
+if ! dpkg -l | grep -q "^ii.*nodejs.*18"; then
+    ynh_script_progression "Installing Node.js $nodejs_version from NodeSource..."
     curl -fsSL https://deb.nodesource.com/setup_${nodejs_version}.x | bash -
     ynh_apt install nodejs
+fi
+
+# Verify we have Node.js 18
+node_version=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
+if [[ "$node_version" != "18" ]]; then
+    ynh_die "Node.js 18 is required but version $node_version is active"
 fi
 
 # Set ownership of install directory so app user can build
