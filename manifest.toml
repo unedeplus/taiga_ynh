@@ -90,5 +90,6 @@ ram.runtime = "256M"
         "postgresql-contrib"
     ]
 
-    [resources.database]
-    type = "postgresql"
+    # Database handled manually in install script to control password
+    # [resources.database]
+    # type = "postgresql"
