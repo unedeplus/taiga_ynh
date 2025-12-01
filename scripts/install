@@ -13,6 +13,9 @@ secret_key=$(ynh_string_random --length=50)
 rabbitmq_pwd=$(ynh_string_random --length=32)
 rabbitmq_user=$app
 
+# Debug: Check if database variables are set
+ynh_print_info "Database variables: db_name=$db_name, db_user=$db_user, db_pwd=(${#db_pwd} chars)"
+
 # Store settings
 ynh_app_setting_set --key=secret_key --value="$secret_key"
 ynh_app_setting_set --key=rabbitmq_user --value="$rabbitmq_user"
