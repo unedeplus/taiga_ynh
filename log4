@@ -1,0 +1,874 @@
+args:
+  app: https://github.com/unedeplus/taiga_ynh
+  force: false
+  ignore_yunohost_version: false
+  label: null
+  no_remove_on_failure: false
+ended_at: 2025-12-01 10:45:40.624707
+env:
+  YNH_APP_ACTION: install
+  YNH_APP_ARG_ADMIN: psychen
+  YNH_APP_ARG_DOMAIN: taiga.domain2.tld
+  YNH_APP_ARG_INIT_MAIN_PERMISSION: visitors
+  YNH_APP_ARG_PATH: /taiga
+  YNH_APP_BASEDIR: /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12
+  YNH_APP_ID: taiga
+  YNH_APP_INSTANCE_NAME: taiga
+  YNH_APP_INSTANCE_NUMBER: '1'
+  YNH_APP_MANIFEST_VERSION: 6.7.0~ynh1
+  YNH_APP_PACKAGING_FORMAT: '2.0'
+  YNH_ARCH: amd64
+  YNH_DEBIAN_VERSION: bookworm
+  YNH_DEFAULT_PHP_VERSION: '8.2'
+  YNH_HELPERS_VERSION: '2.1'
+error: An error occurred inside the app installation script
+interface: cli
+operation: app_install
+parent: null
+related_to:
+- - app
+  - taiga
+started_at: 2025-12-01 10:43:44.100755
+started_by: ******
+success: false
+yunohost_version: 12.1.35
+
+============
+
+2025-12-01 11:43:45,182: INFO - Installing taiga…
+2025-12-01 11:43:45,212: INFO - Provisioning sources...
+2025-12-01 11:43:45,213: DEBUG - Prefetching asset main: https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ...
+2025-12-01 11:43:48,657: DEBUG - Prefetching asset front: https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ...
+2025-12-01 11:43:52,117: INFO - Provisioning system_user...
+2025-12-01 11:43:52,489: INFO - Provisioning install_dir...
+2025-12-01 11:43:52,499: INFO - Provisioning data_dir...
+2025-12-01 11:43:52,505: INFO - Provisioning permissions...
+2025-12-01 11:43:52,512: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:43:52,524: DEBUG - Permission 'taiga.main' created
+2025-12-01 11:43:52,541: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:43:52,552: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:43:52,734: DEBUG - Creating LDAP perm taiga.main
+2025-12-01 11:43:52,762: DEBUG - Permissions were resynchronized to LDAP
+2025-12-01 11:43:52,879: DEBUG - Formating result in 'export' mode
+2025-12-01 11:43:52,881: DEBUG - SSO and portal configurations regenerated
+2025-12-01 11:43:52,881: INFO - Provisioning ports...
+2025-12-01 11:43:52,920: INFO - Provisioning apt...
+2025-12-01 11:43:52,945: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./provision_or_update_apt"  7>&1']'
+2025-12-01 11:43:52,957: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:43:52,965: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:43:52,968: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:43:52,968: DEBUG - +++ pwd
+2025-12-01 11:43:52,969: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:43:52,969: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:43:52,978: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:43:52,978: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:43:53,004: DEBUG - + ynh_abort_if_errors
+2025-12-01 11:43:53,005: DEBUG - + trap ynh_exit_properly EXIT
+2025-12-01 11:43:53,005: DEBUG - + ynh_apt_install_dependencies python3 python3-venv python3-pip python3-dev build-essential libpq-dev git gettext libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev libfreetype6-dev libtiff5-dev redis-server rabbitmq-server postgresql postgresql-contrib
+2025-12-01 11:43:53,008: DEBUG - ++ sed 's/\([^\<=\>]\)\ \([^(]\)/\1, \2/g'
+2025-12-01 11:43:53,010: DEBUG - ++ sed 's/|/ | /'
+2025-12-01 11:43:53,015: DEBUG - + local 'dependencies=python3, python3-venv, python3-pip, python3-dev, build-essential, libpq-dev, git, gettext, libxml2-dev, libxslt1-dev, zlib1g-dev, libjpeg-dev, libfreetype6-dev, libtiff5-dev, redis-server, rabbitmq-server, postgresql, postgresql-contrib'
+2025-12-01 11:43:53,016: DEBUG - ++ ynh_read_manifest version
+2025-12-01 11:43:53,016: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_xhwgilgi/manifest.toml
+2025-12-01 11:43:53,022: DEBUG - ++ jq .version --raw-output
+2025-12-01 11:43:53,022: DEBUG - ++ toml_to_json
+2025-12-01 11:43:53,022: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:43:53,157: DEBUG - + local version=6.7.0~ynh1
+2025-12-01 11:43:53,158: DEBUG - + local app_ynh_deps=taiga-ynh-deps
+2025-12-01 11:43:53,158: DEBUG - + grep '[<=>]'
+2025-12-01 11:43:53,166: DEBUG - ++ sort -u
+2025-12-01 11:43:53,167: DEBUG - ++ grep -oP '(?<=php)[0-9.]+(?=-|\>|)'
+2025-12-01 11:43:53,170: DEBUG - + local specific_php_version=
+2025-12-01 11:43:53,171: DEBUG - + grep --quiet php
+2025-12-01 11:43:53,174: DEBUG - ++ _ynh_apt_package_is_installed postgresql-15
+2025-12-01 11:43:53,174: DEBUG - ++ local package=postgresql-15
+2025-12-01 11:43:53,178: DEBUG - ++ grep --quiet '^installed$'
+2025-12-01 11:43:53,178: DEBUG - ++ dpkg-query --show '--showformat=${db:Status-Status}' postgresql-15
+2025-12-01 11:43:53,214: DEBUG - ++ echo yes
+2025-12-01 11:43:53,214: DEBUG - + local psql_installed=yes
+2025-12-01 11:43:53,214: DEBUG - + [[ true == \t\r\u\e ]]
+2025-12-01 11:43:53,215: DEBUG - + YNH_APT_INSTALL_DEPENDENCIES_REPLACE=false
+2025-12-01 11:43:53,215: DEBUG - ++ mktemp --directory
+2025-12-01 11:43:53,219: DEBUG - + local TMPDIR=/tmp/tmp.OVUyN9qQau
+2025-12-01 11:43:53,219: DEBUG - + mkdir -p /tmp/tmp.OVUyN9qQau/taiga-ynh-deps/DEBIAN
+2025-12-01 11:43:53,223: DEBUG - + chmod -R 755 /tmp/tmp.OVUyN9qQau/taiga-ynh-deps
+2025-12-01 11:43:53,225: DEBUG - + cat
+2025-12-01 11:43:53,229: DEBUG - + _ynh_apt update
+2025-12-01 11:43:53,229: DEBUG - + [[ update == \u\p\d\a\t\e ]]
+2025-12-01 11:43:53,229: DEBUG - + local aptcache=/var/cache/apt/pkgcache.bin
+2025-12-01 11:43:53,229: DEBUG - + sleep 1
+2025-12-01 11:43:54,232: DEBUG - + [[ -e /var/cache/apt/pkgcache.bin ]]
+2025-12-01 11:43:54,232: DEBUG - ++ find /var/cache/apt/pkgcache.bin -mmin -30
+2025-12-01 11:43:54,237: DEBUG - + [[ -n /var/cache/apt/pkgcache.bin ]]
+2025-12-01 11:43:54,239: DEBUG - ++ find /etc/apt/ -newer /var/cache/apt/pkgcache.bin
+2025-12-01 11:43:54,243: DEBUG - + [[ -z '' ]]
+2025-12-01 11:43:54,244: DEBUG - apt cache was already updated in the last 30 minutes, skipping 'apt update'
+2025-12-01 11:43:54,244: DEBUG - + return
+2025-12-01 11:43:54,244: DEBUG - + _ynh_wait_dpkg_free
+2025-12-01 11:43:54,518: DEBUG - + return 0
+2025-12-01 11:43:54,518: DEBUG - + dpkg-deb --build /tmp/tmp.OVUyN9qQau/taiga-ynh-deps /tmp/tmp.OVUyN9qQau/taiga-ynh-deps.deb
+2025-12-01 11:43:54,565: DEBUG - + dpkg --force-depends --install /tmp/tmp.OVUyN9qQau/taiga-ynh-deps.deb
+2025-12-01 11:43:54,565: DEBUG - + tee /tmp/tmp.OVUyN9qQau/dpkg_log
+2025-12-01 11:43:54,939: DEBUG - Selecting previously unselected package taiga-ynh-deps.
+2025-12-01 11:43:55,130: DEBUG - (Reading database ... 150868 files and directories currently installed.)
+2025-12-01 11:43:55,149: DEBUG - Preparing to unpack .../taiga-ynh-deps.deb ...
+2025-12-01 11:43:55,155: DEBUG - Unpacking taiga-ynh-deps (6.7.0~ynh1) ...
+2025-12-01 11:43:55,262: DEBUG - dpkg: taiga-ynh-deps: dependency problems, but configuring anyway as you requested:
+2025-12-01 11:43:55,262: DEBUG -  taiga-ynh-deps depends on libxml2-dev; however:
+2025-12-01 11:43:55,263: DEBUG -   Package libxml2-dev is not installed.
+2025-12-01 11:43:55,263: DEBUG -  taiga-ynh-deps depends on libxslt1-dev; however:
+2025-12-01 11:43:55,263: DEBUG -   Package libxslt1-dev is not installed.
+2025-12-01 11:43:55,263: DEBUG -  taiga-ynh-deps depends on libjpeg-dev; however:
+2025-12-01 11:43:55,263: DEBUG -   Package libjpeg-dev is not installed.
+2025-12-01 11:43:55,263: DEBUG -  taiga-ynh-deps depends on libfreetype6-dev; however:
+2025-12-01 11:43:55,263: DEBUG -   Package libfreetype6-dev is not installed.
+2025-12-01 11:43:55,263: DEBUG -  taiga-ynh-deps depends on libtiff5-dev; however:
+2025-12-01 11:43:55,263: DEBUG -   Package libtiff5-dev is not installed.
+2025-12-01 11:43:55,264: DEBUG -  taiga-ynh-deps depends on rabbitmq-server; however:
+2025-12-01 11:43:55,264: DEBUG -   Package rabbitmq-server is not installed.
+2025-12-01 11:43:55,264: DEBUG -  taiga-ynh-deps depends on postgresql-contrib; however:
+2025-12-01 11:43:55,264: DEBUG -   Package postgresql-contrib is not installed.
+2025-12-01 11:43:55,264: DEBUG - 
+2025-12-01 11:43:55,264: DEBUG - Setting up taiga-ynh-deps (6.7.0~ynh1) ...
+2025-12-01 11:43:55,339: DEBUG - + _ynh_apt_install --fix-broken
+2025-12-01 11:43:55,339: DEBUG - + _ynh_apt --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken
+2025-12-01 11:43:55,339: DEBUG - + [[ --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken == \u\p\d\a\t\e ]]
+2025-12-01 11:43:55,339: DEBUG - + _ynh_wait_dpkg_free
+2025-12-01 11:43:55,629: DEBUG - + return 0
+2025-12-01 11:43:55,629: DEBUG - + apt-get --assume-yes --quiet -o=Acquire::Retries=3 -o=Dpkg::Use-Pty=0 --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken
+2025-12-01 11:43:56,045: DEBUG - Reading package lists...
+2025-12-01 11:43:56,450: DEBUG - Building dependency tree...
+2025-12-01 11:43:56,452: DEBUG - Reading state information...
+2025-12-01 11:43:56,657: DEBUG - Correcting dependencies... Done
+2025-12-01 11:43:57,126: DEBUG - The following additional packages will be installed:
+2025-12-01 11:43:57,127: DEBUG -   erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets
+2025-12-01 11:43:57,127: DEBUG -   erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key
+2025-12-01 11:43:57,127: DEBUG -   erlang-runtime-tools erlang-snmp erlang-ssl erlang-syntax-tools erlang-tftp
+2025-12-01 11:43:57,128: DEBUG -   erlang-tools erlang-xmerl icu-devtools libbrotli-dev libdeflate-dev
+2025-12-01 11:43:57,129: DEBUG -   libfreetype-dev libfreetype6-dev libicu-dev libjbig-dev libjpeg-dev
+2025-12-01 11:43:57,130: DEBUG -   libjpeg62-turbo-dev liblerc-dev liblzma-dev libsctp1 libtiff-dev
+2025-12-01 11:43:57,132: DEBUG -   libtiff5-dev libtiffxx6 libwebp-dev libxml2-dev libxslt1-dev libzstd-dev
+2025-12-01 11:43:57,133: DEBUG -   postgresql-contrib rabbitmq-server
+2025-12-01 11:43:57,137: DEBUG - Suggested packages:
+2025-12-01 11:43:57,137: DEBUG -   erlang erlang-manpages erlang-doc freetype2-doc icu-doc liblzma-doc
+2025-12-01 11:43:57,137: DEBUG -   lksctp-tools
+2025-12-01 11:43:57,176: DEBUG - The following NEW packages will be installed:
+2025-12-01 11:43:57,176: DEBUG -   erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets
+2025-12-01 11:43:57,177: DEBUG -   erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key
+2025-12-01 11:43:57,177: DEBUG -   erlang-runtime-tools erlang-snmp erlang-ssl erlang-syntax-tools erlang-tftp
+2025-12-01 11:43:57,178: DEBUG -   erlang-tools erlang-xmerl icu-devtools libbrotli-dev libdeflate-dev
+2025-12-01 11:43:57,179: DEBUG -   libfreetype-dev libfreetype6-dev libicu-dev libjbig-dev libjpeg-dev
+2025-12-01 11:43:57,180: DEBUG -   libjpeg62-turbo-dev liblerc-dev liblzma-dev libsctp1 libtiff-dev
+2025-12-01 11:43:57,181: DEBUG -   libtiff5-dev libtiffxx6 libwebp-dev libxml2-dev libxslt1-dev libzstd-dev
+2025-12-01 11:43:57,182: DEBUG -   postgresql-contrib rabbitmq-server
+2025-12-01 11:43:58,452: DEBUG - 0 upgraded, 38 newly installed, 0 to remove and 43 not upgraded.
+2025-12-01 11:43:58,452: DEBUG - Need to get 0 B/49.4 MB of archives.
+2025-12-01 11:43:58,453: DEBUG - After this operation, 121 MB of additional disk space will be used.
+2025-12-01 11:43:58,568: DEBUG - Selecting previously unselected package erlang-base.
+2025-12-01 11:43:58,748: DEBUG - (Reading database ... 150868 files and directories currently installed.)
+2025-12-01 11:43:58,766: DEBUG - Preparing to unpack .../00-erlang-base_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:43:58,782: DEBUG - Unpacking erlang-base (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:43:59,918: DEBUG - Selecting previously unselected package erlang-asn1.
+2025-12-01 11:43:59,993: DEBUG - Preparing to unpack .../01-erlang-asn1_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:00,020: DEBUG - Unpacking erlang-asn1 (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:00,230: DEBUG - Selecting previously unselected package erlang-crypto.
+2025-12-01 11:44:00,275: DEBUG - Preparing to unpack .../02-erlang-crypto_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:00,283: DEBUG - Unpacking erlang-crypto (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:00,432: DEBUG - Selecting previously unselected package erlang-public-key.
+2025-12-01 11:44:00,474: DEBUG - Preparing to unpack .../03-erlang-public-key_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:00,488: DEBUG - Unpacking erlang-public-key (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:00,694: DEBUG - Selecting previously unselected package erlang-mnesia.
+2025-12-01 11:44:00,736: DEBUG - Preparing to unpack .../04-erlang-mnesia_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:00,746: DEBUG - Unpacking erlang-mnesia (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:00,946: DEBUG - Selecting previously unselected package erlang-runtime-tools.
+2025-12-01 11:44:00,986: DEBUG - Preparing to unpack .../05-erlang-runtime-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:00,998: DEBUG - Unpacking erlang-runtime-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:01,241: DEBUG - Selecting previously unselected package erlang-ssl.
+2025-12-01 11:44:01,307: DEBUG - Preparing to unpack .../06-erlang-ssl_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:01,327: DEBUG - Unpacking erlang-ssl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:01,598: DEBUG - Selecting previously unselected package erlang-eldap.
+2025-12-01 11:44:01,640: DEBUG - Preparing to unpack .../07-erlang-eldap_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:01,648: DEBUG - Unpacking erlang-eldap (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:01,866: DEBUG - Selecting previously unselected package erlang-ftp.
+2025-12-01 11:44:01,899: DEBUG - Preparing to unpack .../08-erlang-ftp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:01,910: DEBUG - Unpacking erlang-ftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:02,054: DEBUG - Selecting previously unselected package erlang-tftp.
+2025-12-01 11:44:02,100: DEBUG - Preparing to unpack .../09-erlang-tftp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:02,112: DEBUG - Unpacking erlang-tftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:02,255: DEBUG - Selecting previously unselected package erlang-inets.
+2025-12-01 11:44:02,313: DEBUG - Preparing to unpack .../10-erlang-inets_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:02,331: DEBUG - Unpacking erlang-inets (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:02,680: DEBUG - Selecting previously unselected package erlang-snmp.
+2025-12-01 11:44:02,752: DEBUG - Preparing to unpack .../11-erlang-snmp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:02,764: DEBUG - Unpacking erlang-snmp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:03,282: DEBUG - Selecting previously unselected package erlang-os-mon.
+2025-12-01 11:44:03,342: DEBUG - Preparing to unpack .../12-erlang-os-mon_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:03,351: DEBUG - Unpacking erlang-os-mon (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:03,565: DEBUG - Selecting previously unselected package erlang-parsetools.
+2025-12-01 11:44:03,655: DEBUG - Preparing to unpack .../13-erlang-parsetools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:03,679: DEBUG - Unpacking erlang-parsetools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:03,831: DEBUG - Selecting previously unselected package erlang-syntax-tools.
+2025-12-01 11:44:03,895: DEBUG - Preparing to unpack .../14-erlang-syntax-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:03,907: DEBUG - Unpacking erlang-syntax-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:04,044: DEBUG - Selecting previously unselected package erlang-tools.
+2025-12-01 11:44:04,088: DEBUG - Preparing to unpack .../15-erlang-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:04,103: DEBUG - Unpacking erlang-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:04,279: DEBUG - Selecting previously unselected package erlang-xmerl.
+2025-12-01 11:44:04,344: DEBUG - Preparing to unpack .../16-erlang-xmerl_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:04,355: DEBUG - Unpacking erlang-xmerl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:04,587: DEBUG - Selecting previously unselected package icu-devtools.
+2025-12-01 11:44:04,633: DEBUG - Preparing to unpack .../17-icu-devtools_72.1-3+deb12u1_amd64.deb ...
+2025-12-01 11:44:04,644: DEBUG - Unpacking icu-devtools (72.1-3+deb12u1) ...
+2025-12-01 11:44:04,860: DEBUG - Selecting previously unselected package libbrotli-dev:amd64.
+2025-12-01 11:44:04,951: DEBUG - Preparing to unpack .../18-libbrotli-dev_1.0.9-2+b6_amd64.deb ...
+2025-12-01 11:44:04,967: DEBUG - Unpacking libbrotli-dev:amd64 (1.0.9-2+b6) ...
+2025-12-01 11:44:05,252: DEBUG - Selecting previously unselected package libdeflate-dev:amd64.
+2025-12-01 11:44:05,291: DEBUG - Preparing to unpack .../19-libdeflate-dev_1.14-1_amd64.deb ...
+2025-12-01 11:44:05,309: DEBUG - Unpacking libdeflate-dev:amd64 (1.14-1) ...
+2025-12-01 11:44:05,426: DEBUG - Selecting previously unselected package libfreetype-dev:amd64.
+2025-12-01 11:44:05,463: DEBUG - Preparing to unpack .../20-libfreetype-dev_2.12.1+dfsg-5+deb12u4_amd64.deb ...
+2025-12-01 11:44:05,474: DEBUG - Unpacking libfreetype-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:44:05,707: DEBUG - Selecting previously unselected package libfreetype6-dev:amd64.
+2025-12-01 11:44:05,747: DEBUG - Preparing to unpack .../21-libfreetype6-dev_2.12.1+dfsg-5+deb12u4_amd64.deb ...
+2025-12-01 11:44:05,756: DEBUG - Unpacking libfreetype6-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:44:05,894: DEBUG - Selecting previously unselected package libicu-dev:amd64.
+2025-12-01 11:44:05,932: DEBUG - Preparing to unpack .../22-libicu-dev_72.1-3+deb12u1_amd64.deb ...
+2025-12-01 11:44:05,941: DEBUG - Unpacking libicu-dev:amd64 (72.1-3+deb12u1) ...
+2025-12-01 11:44:07,019: DEBUG - Selecting previously unselected package libjbig-dev:amd64.
+2025-12-01 11:44:07,074: DEBUG - Preparing to unpack .../23-libjbig-dev_2.1-6.1_amd64.deb ...
+2025-12-01 11:44:07,080: DEBUG - Unpacking libjbig-dev:amd64 (2.1-6.1) ...
+2025-12-01 11:44:07,194: DEBUG - Selecting previously unselected package libjpeg62-turbo-dev:amd64.
+2025-12-01 11:44:07,231: DEBUG - Preparing to unpack .../24-libjpeg62-turbo-dev_1%3a2.1.5-2_amd64.deb ...
+2025-12-01 11:44:07,239: DEBUG - Unpacking libjpeg62-turbo-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:44:07,433: DEBUG - Selecting previously unselected package libjpeg-dev:amd64.
+2025-12-01 11:44:07,474: DEBUG - Preparing to unpack .../25-libjpeg-dev_1%3a2.1.5-2_amd64.deb ...
+2025-12-01 11:44:07,495: DEBUG - Unpacking libjpeg-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:44:07,634: DEBUG - Selecting previously unselected package liblerc-dev:amd64.
+2025-12-01 11:44:07,669: DEBUG - Preparing to unpack .../26-liblerc-dev_4.0.0+ds-2_amd64.deb ...
+2025-12-01 11:44:07,687: DEBUG - Unpacking liblerc-dev:amd64 (4.0.0+ds-2) ...
+2025-12-01 11:44:07,809: DEBUG - Selecting previously unselected package liblzma-dev:amd64.
+2025-12-01 11:44:07,862: DEBUG - Preparing to unpack .../27-liblzma-dev_5.4.1-1_amd64.deb ...
+2025-12-01 11:44:07,871: DEBUG - Unpacking liblzma-dev:amd64 (5.4.1-1) ...
+2025-12-01 11:44:08,034: DEBUG - Selecting previously unselected package libsctp1:amd64.
+2025-12-01 11:44:08,074: DEBUG - Preparing to unpack .../28-libsctp1_1.0.19+dfsg-2_amd64.deb ...
+2025-12-01 11:44:08,094: DEBUG - Unpacking libsctp1:amd64 (1.0.19+dfsg-2) ...
+2025-12-01 11:44:08,202: DEBUG - Selecting previously unselected package libzstd-dev:amd64.
+2025-12-01 11:44:08,238: DEBUG - Preparing to unpack .../29-libzstd-dev_1.5.4+dfsg2-5_amd64.deb ...
+2025-12-01 11:44:08,245: DEBUG - Unpacking libzstd-dev:amd64 (1.5.4+dfsg2-5) ...
+2025-12-01 11:44:08,412: DEBUG - Selecting previously unselected package libwebp-dev:amd64.
+2025-12-01 11:44:08,448: DEBUG - Preparing to unpack .../30-libwebp-dev_1.2.4-0.2+deb12u1_amd64.deb ...
+2025-12-01 11:44:08,459: DEBUG - Unpacking libwebp-dev:amd64 (1.2.4-0.2+deb12u1) ...
+2025-12-01 11:44:08,740: DEBUG - Selecting previously unselected package libtiffxx6:amd64.
+2025-12-01 11:44:08,788: DEBUG - Preparing to unpack .../31-libtiffxx6_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:44:08,798: DEBUG - Unpacking libtiffxx6:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:08,914: DEBUG - Selecting previously unselected package libtiff-dev:amd64.
+2025-12-01 11:44:08,963: DEBUG - Preparing to unpack .../32-libtiff-dev_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:44:08,974: DEBUG - Unpacking libtiff-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:09,186: DEBUG - Selecting previously unselected package libtiff5-dev:amd64.
+2025-12-01 11:44:09,225: DEBUG - Preparing to unpack .../33-libtiff5-dev_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:44:09,234: DEBUG - Unpacking libtiff5-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:09,334: DEBUG - Selecting previously unselected package libxml2-dev:amd64.
+2025-12-01 11:44:09,375: DEBUG - Preparing to unpack .../34-libxml2-dev_2.9.14+dfsg-1.3~deb12u4_amd64.deb ...
+2025-12-01 11:44:09,383: DEBUG - Unpacking libxml2-dev:amd64 (2.9.14+dfsg-1.3~deb12u4) ...
+2025-12-01 11:44:09,618: DEBUG - Selecting previously unselected package libxslt1-dev:amd64.
+2025-12-01 11:44:09,659: DEBUG - Preparing to unpack .../35-libxslt1-dev_1.1.35-1+deb12u3_amd64.deb ...
+2025-12-01 11:44:09,675: DEBUG - Unpacking libxslt1-dev:amd64 (1.1.35-1+deb12u3) ...
+2025-12-01 11:44:10,058: DEBUG - Selecting previously unselected package postgresql-contrib.
+2025-12-01 11:44:10,111: DEBUG - Preparing to unpack .../36-postgresql-contrib_15+248+deb12u1_all.deb ...
+2025-12-01 11:44:10,124: DEBUG - Unpacking postgresql-contrib (15+248+deb12u1) ...
+2025-12-01 11:44:10,285: DEBUG - Selecting previously unselected package rabbitmq-server.
+2025-12-01 11:44:10,327: DEBUG - Preparing to unpack .../37-rabbitmq-server_3.10.8-1.1+deb12u1_all.deb ...
+2025-12-01 11:44:10,341: DEBUG - Unpacking rabbitmq-server (3.10.8-1.1+deb12u1) ...
+2025-12-01 11:44:12,234: DEBUG - Setting up libzstd-dev:amd64 (1.5.4+dfsg2-5) ...
+2025-12-01 11:44:12,259: DEBUG - Setting up erlang-base (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:14,354: DEBUG - Created symlink /etc/systemd/system/multi-user.target.wants/epmd.service -> /lib/systemd/system/epmd.service.
+2025-12-01 11:44:14,355: DEBUG - Created symlink /etc/systemd/system/sockets.target.wants/epmd.socket -> /lib/systemd/system/epmd.socket.
+2025-12-01 11:44:15,318: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:44:15,329: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:44:18,557: DEBUG - Searching for services which depend on erlang and should be started... none found.
+2025-12-01 11:44:18,569: DEBUG - Setting up erlang-xmerl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,591: DEBUG - Setting up libjbig-dev:amd64 (2.1-6.1) ...
+2025-12-01 11:44:18,617: DEBUG - Setting up erlang-syntax-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,651: DEBUG - Setting up libwebp-dev:amd64 (1.2.4-0.2+deb12u1) ...
+2025-12-01 11:44:18,687: DEBUG - Setting up erlang-parsetools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,725: DEBUG - Setting up libjpeg62-turbo-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:44:18,749: DEBUG - Setting up icu-devtools (72.1-3+deb12u1) ...
+2025-12-01 11:44:18,771: DEBUG - Setting up liblerc-dev:amd64 (4.0.0+ds-2) ...
+2025-12-01 11:44:18,794: DEBUG - Setting up erlang-asn1 (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,813: DEBUG - Setting up erlang-tftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,833: DEBUG - Setting up liblzma-dev:amd64 (5.4.1-1) ...
+2025-12-01 11:44:18,858: DEBUG - Setting up libsctp1:amd64 (1.0.19+dfsg-2) ...
+2025-12-01 11:44:18,881: DEBUG - Setting up postgresql-contrib (15+248+deb12u1) ...
+2025-12-01 11:44:18,904: DEBUG - Setting up erlang-mnesia (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,926: DEBUG - Setting up erlang-crypto (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:18,946: DEBUG - Setting up libtiffxx6:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:18,964: DEBUG - Setting up libdeflate-dev:amd64 (1.14-1) ...
+2025-12-01 11:44:18,990: DEBUG - Setting up libicu-dev:amd64 (72.1-3+deb12u1) ...
+2025-12-01 11:44:19,025: DEBUG - Setting up libbrotli-dev:amd64 (1.0.9-2+b6) ...
+2025-12-01 11:44:19,047: DEBUG - Setting up erlang-runtime-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,070: DEBUG - Setting up libjpeg-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:44:19,095: DEBUG - Setting up erlang-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,115: DEBUG - Setting up libfreetype-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:44:19,142: DEBUG - Setting up erlang-snmp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,187: DEBUG - Setting up libxml2-dev:amd64 (2.9.14+dfsg-1.3~deb12u4) ...
+2025-12-01 11:44:19,216: DEBUG - Setting up libtiff-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:19,251: DEBUG - Setting up erlang-public-key (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,280: DEBUG - Setting up erlang-ssl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,308: DEBUG - Setting up libxslt1-dev:amd64 (1.1.35-1+deb12u3) ...
+2025-12-01 11:44:19,331: DEBUG - Setting up erlang-os-mon (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,354: DEBUG - Setting up libtiff5-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:44:19,376: DEBUG - Setting up libfreetype6-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:44:19,397: DEBUG - Setting up erlang-eldap (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,416: DEBUG - Setting up erlang-ftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,434: DEBUG - Setting up erlang-inets (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:44:19,452: DEBUG - Setting up rabbitmq-server (3.10.8-1.1+deb12u1) ...
+2025-12-01 11:44:19,777: DEBUG - Created symlink /etc/systemd/system/multi-user.target.wants/rabbitmq-server.service -> /lib/systemd/system/rabbitmq-server.service.
+2025-12-01 11:44:20,306: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:44:29,500: DEBUG - Processing triggers for man-db (2.11.2-2) ...
+2025-12-01 11:44:31,436: DEBUG - Processing triggers for libc-bin (2.36-9+deb12u13) ...
+2025-12-01 11:44:31,783: DEBUG - + rm --recursive --force /tmp/tmp.OVUyN9qQau
+2025-12-01 11:44:31,794: DEBUG - + _ynh_apt_package_is_installed taiga-ynh-deps
+2025-12-01 11:44:31,794: DEBUG - + local package=taiga-ynh-deps
+2025-12-01 11:44:31,794: DEBUG - + grep --quiet '^installed$'
+2025-12-01 11:44:31,794: DEBUG - + dpkg-query --show '--showformat=${db:Status-Status}' taiga-ynh-deps
+2025-12-01 11:44:31,826: DEBUG - ++ _ynh_apt_package_is_installed postgresql-15
+2025-12-01 11:44:31,826: DEBUG - ++ local package=postgresql-15
+2025-12-01 11:44:31,827: DEBUG - ++ dpkg-query --show '--showformat=${db:Status-Status}' postgresql-15
+2025-12-01 11:44:31,834: DEBUG - ++ grep --quiet '^installed$'
+2025-12-01 11:44:31,862: DEBUG - ++ echo yes
+2025-12-01 11:44:31,863: DEBUG - + local psql_installed2=yes
+2025-12-01 11:44:31,863: DEBUG - + [[ yes != \y\e\s ]]
+2025-12-01 11:44:31,863: DEBUG - + ynh_exit_properly
+2025-12-01 11:44:31,863: DEBUG - + [[ provision_or_update_apt =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:44:31,965: INFO - Provisioning database...
+2025-12-01 11:44:32,341: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./provision_database"  7>&1']'
+2025-12-01 11:44:32,348: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:44:32,353: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:44:32,355: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:44:32,356: DEBUG - +++ pwd
+2025-12-01 11:44:32,357: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:44:32,357: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:44:32,369: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:44:32,370: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:44:32,395: DEBUG - + ynh_abort_if_errors
+2025-12-01 11:44:32,396: DEBUG - + trap ynh_exit_properly EXIT
+2025-12-01 11:44:32,396: DEBUG - + ynh_psql_create_user taiga **********
+2025-12-01 11:44:32,396: DEBUG - + local user=taiga
+2025-12-01 11:44:32,396: DEBUG - + local pwd=**********
+2025-12-01 11:44:32,396: DEBUG - + sudo --login --user=postgres psql
+2025-12-01 11:44:32,530: DEBUG - CREATE ROLE
+2025-12-01 11:44:32,539: DEBUG - + ynh_psql_create_db taiga taiga
+2025-12-01 11:44:32,539: DEBUG - + local db=taiga
+2025-12-01 11:44:32,539: DEBUG - + local user=taiga
+2025-12-01 11:44:32,539: DEBUG - + local 'sql=CREATE DATABASE taiga;'
+2025-12-01 11:44:32,540: DEBUG - + '[' -n taiga ']'
+2025-12-01 11:44:32,540: DEBUG - + sql+='ALTER DATABASE taiga OWNER TO taiga;'
+2025-12-01 11:44:32,540: DEBUG - + sql+='GRANT ALL PRIVILEGES ON DATABASE taiga TO taiga WITH GRANT OPTION;'
+2025-12-01 11:44:32,540: DEBUG - + sudo --login --user=postgres psql
+2025-12-01 11:44:32,761: DEBUG - CREATE DATABASE
+2025-12-01 11:44:32,768: DEBUG - ALTER DATABASE
+2025-12-01 11:44:32,772: DEBUG - GRANT
+2025-12-01 11:44:32,778: DEBUG - + ynh_exit_properly
+2025-12-01 11:44:32,778: DEBUG - + [[ provision_database =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:44:32,884: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./install"  7>&1']'
+2025-12-01 11:44:32,893: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:44:32,898: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:44:32,900: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:44:32,901: DEBUG - +++ pwd
+2025-12-01 11:44:32,902: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:44:32,902: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:44:32,922: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:44:32,922: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:44:32,946: DEBUG - + source _common.sh
+2025-12-01 11:44:32,947: DEBUG - ++ nodejs_version=18
+2025-12-01 11:44:32,958: INFO - [+...................] > Initializing installation parameters...
+2025-12-01 11:44:32,961: DEBUG - ++ ynh_string_random --length=50
+2025-12-01 11:44:33,011: DEBUG - ++ length=50
+2025-12-01 11:44:33,011: DEBUG - ++ filter=A-Za-z0-9
+2025-12-01 11:44:33,011: DEBUG - ++ head -c 50
+2025-12-01 11:44:33,011: DEBUG - ++ tr --complement --delete A-Za-z0-9
+2025-12-01 11:44:33,017: DEBUG - + secret_key=**********
+2025-12-01 11:44:33,018: DEBUG - ++ ynh_string_random --length=32
+2025-12-01 11:44:33,075: DEBUG - ++ length=32
+2025-12-01 11:44:33,075: DEBUG - ++ filter=A-Za-z0-9
+2025-12-01 11:44:33,076: DEBUG - ++ tr --complement --delete A-Za-z0-9
+2025-12-01 11:44:33,076: DEBUG - ++ head -c 32
+2025-12-01 11:44:33,085: DEBUG - + rabbitmq_pwd=**********
+2025-12-01 11:44:33,085: DEBUG - + rabbitmq_user=taiga
+2025-12-01 11:44:33,085: DEBUG - + ynh_app_setting_set --key=secret_key --value=**********
+2025-12-01 11:44:33,389: DEBUG - + ynh_app_setting_set --key=rabbitmq_user --value=taiga
+2025-12-01 11:44:33,625: DEBUG - + ynh_app_setting_set --key=rabbitmq_pwd --value=**********
+2025-12-01 11:44:33,870: DEBUG - + ynh_setup_source --dest_dir=/var/www/taiga/taiga-back --source_id=main
+2025-12-01 11:44:33,873: INFO - [#++.................] > Setting up source files...
+2025-12-01 11:44:34,018: DEBUG - + keep=
+2025-12-01 11:44:34,018: DEBUG - + full_replace=0
+2025-12-01 11:44:34,018: DEBUG - + source_id=main
+2025-12-01 11:44:34,018: DEBUG - + '[' -e /var/www/taiga/taiga-back/composer.phar ']'
+2025-12-01 11:44:34,018: DEBUG - ++ ynh_read_manifest 'resources.sources["main"]'
+2025-12-01 11:44:34,021: DEBUG - ++ toml_to_json
+2025-12-01 11:44:34,022: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:44:34,022: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/manifest.toml
+2025-12-01 11:44:34,023: DEBUG - ++ jq '.resources.sources["main"]' --raw-output
+2025-12-01 11:44:34,128: DEBUG - + local 'sources_json={
+2025-12-01 11:44:34,128: DEBUG -   "url": "https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz",
+2025-12-01 11:44:34,128: DEBUG -   "sha256": "3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e"
+2025-12-01 11:44:34,128: DEBUG - }'
+2025-12-01 11:44:34,128: DEBUG - + jq -re .url
+2025-12-01 11:44:34,178: DEBUG - https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:44:34,178: DEBUG - + local arch_prefix=
+2025-12-01 11:44:34,235: DEBUG - + local src_url=https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:44:34,298: DEBUG - + local src_sum=3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e
+2025-12-01 11:44:34,369: DEBUG - + local src_format=
+2025-12-01 11:44:34,425: DEBUG - + local src_in_subdir=
+2025-12-01 11:44:34,425: DEBUG - + src_in_subdir=true
+2025-12-01 11:44:34,482: DEBUG - + local src_extract=
+2025-12-01 11:44:34,589: DEBUG - + local src_platform=
+2025-12-01 11:44:34,685: DEBUG - + local src_rename=
+2025-12-01 11:44:34,686: DEBUG - + [[ -n https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ]]
+2025-12-01 11:44:34,686: DEBUG - + [[ -n 3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e ]]
+2025-12-01 11:44:34,686: DEBUG - + [[ -z '' ]]
+2025-12-01 11:44:34,686: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.zip$ ]]
+2025-12-01 11:44:34,686: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*/zipball/.*$ ]]
+2025-12-01 11:44:34,695: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.tar\.gz$ ]]
+2025-12-01 11:44:34,695: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:34,695: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:34,696: DEBUG - ++ tr '[:upper:]' '[:lower:]'
+2025-12-01 11:44:34,705: DEBUG - ++ echo tar.gz
+2025-12-01 11:44:34,710: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:34,710: DEBUG - + src_extract=true
+2025-12-01 11:44:34,710: DEBUG - + [[ true != \t\r\u\e ]]
+2025-12-01 11:44:34,713: DEBUG - ++ dirname /var/cache/yunohost/download/taiga/main
+2025-12-01 11:44:34,716: DEBUG - + mkdir -p /var/cache/yunohost/download/taiga
+2025-12-01 11:44:34,721: DEBUG - + src_filename=/var/cache/yunohost/download/taiga/main
+2025-12-01 11:44:34,721: DEBUG - + '[' tar.gz = docker ']'
+2025-12-01 11:44:34,721: DEBUG - + '[' -n https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ']'
+2025-12-01 11:44:34,721: DEBUG - + '[' -e /var/cache/yunohost/download/taiga/main ']'
+2025-12-01 11:44:34,724: DEBUG - + sha256sum --check --status
+2025-12-01 11:44:34,750: DEBUG - + '[' '!' -e /var/cache/yunohost/download/taiga/main ']'
+2025-12-01 11:44:34,752: DEBUG - + sha256sum --check --status
+2025-12-01 11:44:34,774: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:44:34,777: DEBUG - + '[' -n '' ']'
+2025-12-01 11:44:34,777: DEBUG - + mkdir --parents /var/www/taiga/taiga-back
+2025-12-01 11:44:34,781: DEBUG - + [[ true == \f\a\l\s\e ]]
+2025-12-01 11:44:34,781: DEBUG - + [[ tar.gz == \d\o\c\k\e\r ]]
+2025-12-01 11:44:34,781: DEBUG - + [[ tar.gz == \z\i\p ]]
+2025-12-01 11:44:34,781: DEBUG - + [[ tar.gz == \x\z ]]
+2025-12-01 11:44:34,781: DEBUG - + [[ tar.gz == \z\s\t ]]
+2025-12-01 11:44:34,782: DEBUG - + strip=()
+2025-12-01 11:44:34,782: DEBUG - + '[' true '!=' false ']'
+2025-12-01 11:44:34,782: DEBUG - + '[' true == true ']'
+2025-12-01 11:44:34,782: DEBUG - + local sub_dirs=1
+2025-12-01 11:44:34,782: DEBUG - + strip=(--strip-components "$sub_dirs")
+2025-12-01 11:44:34,782: DEBUG - + [[ tar.gz =~ ^tar.gz|tar.bz2|tar.xz|tar.zst|tar$ ]]
+2025-12-01 11:44:34,782: DEBUG - + tar --extract --file=/var/cache/yunohost/download/taiga/main --directory=/var/www/taiga/taiga-back --strip-components 1
+2025-12-01 11:44:35,026: DEBUG - + ynh_safe_rm /var/cache/yunohost/download/taiga/main
+2025-12-01 11:44:35,026: DEBUG - + local target=/var/cache/yunohost/download/taiga/main
+2025-12-01 11:44:35,056: DEBUG - + '[' -d /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/patches/main ']'
+2025-12-01 11:44:35,059: DEBUG - + '[' -n '' ']'
+2025-12-01 11:44:35,059: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:44:35,059: DEBUG - + '[' -n /var/www/taiga ']'
+2025-12-01 11:44:35,059: DEBUG - + '[' /var/www/taiga/taiga-back == /var/www/taiga ']'
+2025-12-01 11:44:35,059: DEBUG - + ynh_setup_source --dest_dir=/var/www/taiga/taiga-front --source_id=front
+2025-12-01 11:44:35,202: DEBUG - + keep=
+2025-12-01 11:44:35,203: DEBUG - + full_replace=0
+2025-12-01 11:44:35,203: DEBUG - + source_id=front
+2025-12-01 11:44:35,203: DEBUG - + '[' -e /var/www/taiga/taiga-front/composer.phar ']'
+2025-12-01 11:44:35,205: DEBUG - ++ ynh_read_manifest 'resources.sources["front"]'
+2025-12-01 11:44:35,205: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/manifest.toml
+2025-12-01 11:44:35,206: DEBUG - ++ jq '.resources.sources["front"]' --raw-output
+2025-12-01 11:44:35,207: DEBUG - ++ toml_to_json
+2025-12-01 11:44:35,208: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:44:35,296: DEBUG - + local 'sources_json={
+2025-12-01 11:44:35,296: DEBUG -   "url": "https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz",
+2025-12-01 11:44:35,296: DEBUG -   "sha256": "037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522"
+2025-12-01 11:44:35,296: DEBUG - }'
+2025-12-01 11:44:35,296: DEBUG - + jq -re .url
+2025-12-01 11:44:35,348: DEBUG - https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:44:35,350: DEBUG - + local arch_prefix=
+2025-12-01 11:44:35,405: DEBUG - + local src_url=https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:44:35,461: DEBUG - + local src_sum=037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522
+2025-12-01 11:44:35,516: DEBUG - + local src_format=
+2025-12-01 11:44:35,571: DEBUG - + local src_in_subdir=
+2025-12-01 11:44:35,571: DEBUG - + src_in_subdir=true
+2025-12-01 11:44:35,625: DEBUG - + local src_extract=
+2025-12-01 11:44:35,680: DEBUG - + local src_platform=
+2025-12-01 11:44:35,738: DEBUG - + local src_rename=
+2025-12-01 11:44:35,740: DEBUG - + [[ -n https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ]]
+2025-12-01 11:44:35,740: DEBUG - + [[ -n 037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522 ]]
+2025-12-01 11:44:35,740: DEBUG - + [[ -z '' ]]
+2025-12-01 11:44:35,740: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.zip$ ]]
+2025-12-01 11:44:35,740: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*/zipball/.*$ ]]
+2025-12-01 11:44:35,741: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.tar\.gz$ ]]
+2025-12-01 11:44:35,741: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:35,741: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:35,743: DEBUG - ++ echo tar.gz
+2025-12-01 11:44:35,743: DEBUG - ++ tr '[:upper:]' '[:lower:]'
+2025-12-01 11:44:35,749: DEBUG - + src_format=tar.gz
+2025-12-01 11:44:35,749: DEBUG - + src_extract=true
+2025-12-01 11:44:35,749: DEBUG - + [[ true != \t\r\u\e ]]
+2025-12-01 11:44:35,750: DEBUG - ++ dirname /var/cache/yunohost/download/taiga/front
+2025-12-01 11:44:35,761: DEBUG - + mkdir -p /var/cache/yunohost/download/taiga
+2025-12-01 11:44:35,770: DEBUG - + src_filename=/var/cache/yunohost/download/taiga/front
+2025-12-01 11:44:35,770: DEBUG - + '[' tar.gz = docker ']'
+2025-12-01 11:44:35,770: DEBUG - + '[' -n https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ']'
+2025-12-01 11:44:35,770: DEBUG - + '[' -e /var/cache/yunohost/download/taiga/front ']'
+2025-12-01 11:44:35,776: DEBUG - + sha256sum --check --status
+2025-12-01 11:44:35,851: DEBUG - + '[' '!' -e /var/cache/yunohost/download/taiga/front ']'
+2025-12-01 11:44:35,852: DEBUG - + sha256sum --check --status
+2025-12-01 11:44:35,917: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:44:35,920: DEBUG - + '[' -n '' ']'
+2025-12-01 11:44:35,920: DEBUG - + mkdir --parents /var/www/taiga/taiga-front
+2025-12-01 11:44:35,925: DEBUG - + [[ true == \f\a\l\s\e ]]
+2025-12-01 11:44:35,925: DEBUG - + [[ tar.gz == \d\o\c\k\e\r ]]
+2025-12-01 11:44:35,925: DEBUG - + [[ tar.gz == \z\i\p ]]
+2025-12-01 11:44:35,925: DEBUG - + [[ tar.gz == \x\z ]]
+2025-12-01 11:44:35,925: DEBUG - + [[ tar.gz == \z\s\t ]]
+2025-12-01 11:44:35,925: DEBUG - + strip=()
+2025-12-01 11:44:35,925: DEBUG - + '[' true '!=' false ']'
+2025-12-01 11:44:35,926: DEBUG - + '[' true == true ']'
+2025-12-01 11:44:35,926: DEBUG - + local sub_dirs=1
+2025-12-01 11:44:35,926: DEBUG - + strip=(--strip-components "$sub_dirs")
+2025-12-01 11:44:35,926: DEBUG - + [[ tar.gz =~ ^tar.gz|tar.bz2|tar.xz|tar.zst|tar$ ]]
+2025-12-01 11:44:35,926: DEBUG - + tar --extract --file=/var/cache/yunohost/download/taiga/front --directory=/var/www/taiga/taiga-front --strip-components 1
+2025-12-01 11:44:36,247: DEBUG - + ynh_safe_rm /var/cache/yunohost/download/taiga/front
+2025-12-01 11:44:36,248: DEBUG - + local target=/var/cache/yunohost/download/taiga/front
+2025-12-01 11:44:36,271: DEBUG - + '[' -d /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/patches/front ']'
+2025-12-01 11:44:36,271: DEBUG - + '[' -n '' ']'
+2025-12-01 11:44:36,271: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:44:36,274: DEBUG - + '[' -n /var/www/taiga ']'
+2025-12-01 11:44:36,276: DEBUG - + '[' /var/www/taiga/taiga-front == /var/www/taiga ']'
+2025-12-01 11:44:36,281: INFO - [###++...............] > Configuring RabbitMQ...
+2025-12-01 11:44:36,282: DEBUG - + rabbitmqctl add_user taiga **********
+2025-12-01 11:44:37,812: DEBUG - Adding user "taiga" ...
+2025-12-01 11:44:37,831: DEBUG - Done. Don't forget to grant the user permissions to some virtual hosts! See 'rabbitmqctl help set_permissions' to learn more.
+2025-12-01 11:44:37,853: DEBUG - + rabbitmqctl add_vhost taiga
+2025-12-01 11:44:39,532: DEBUG - Adding vhost "taiga" ...
+2025-12-01 11:44:39,701: DEBUG - + rabbitmqctl set_permissions -p taiga taiga '.*' '.*' '.*'
+2025-12-01 11:44:41,464: DEBUG - Setting permissions for user "taiga" in vhost "taiga" ...
+2025-12-01 11:44:41,504: DEBUG - + python3 -m venv /var/www/taiga/venv
+2025-12-01 11:44:41,504: INFO - [#####++.............] > Installing Python dependencies...
+2025-12-01 11:44:48,049: DEBUG - + /var/www/taiga/venv/bin/pip install --upgrade pip wheel setuptools
+2025-12-01 11:44:48,779: DEBUG - Requirement already satisfied: pip in /var/www/taiga/venv/lib/python3.11/site-packages (23.0.1)
+2025-12-01 11:44:49,086: DEBUG - Collecting pip
+2025-12-01 11:44:49,108: DEBUG -   Using cached pip-25.3-py3-none-any.whl (1.8 MB)
+2025-12-01 11:44:49,215: DEBUG - Collecting wheel
+2025-12-01 11:44:49,225: DEBUG -   Using cached wheel-0.45.1-py3-none-any.whl (72 kB)
+2025-12-01 11:44:49,232: DEBUG - Requirement already satisfied: setuptools in /var/www/taiga/venv/lib/python3.11/site-packages (66.1.1)
+2025-12-01 11:44:49,729: DEBUG - Collecting setuptools
+2025-12-01 11:44:49,741: DEBUG -   Using cached setuptools-80.9.0-py3-none-any.whl (1.2 MB)
+2025-12-01 11:44:50,076: DEBUG - Installing collected packages: wheel, setuptools, pip
+2025-12-01 11:44:50,184: DEBUG -   Attempting uninstall: setuptools
+2025-12-01 11:44:50,190: DEBUG -     Found existing installation: setuptools 66.1.1
+2025-12-01 11:44:50,396: DEBUG -     Uninstalling setuptools-66.1.1:
+2025-12-01 11:44:50,419: DEBUG -       Successfully uninstalled setuptools-66.1.1
+2025-12-01 11:44:51,827: DEBUG -   Attempting uninstall: pip
+2025-12-01 11:44:51,833: DEBUG -     Found existing installation: pip 23.0.1
+2025-12-01 11:44:52,211: DEBUG -     Uninstalling pip-23.0.1:
+2025-12-01 11:44:52,221: DEBUG -       Successfully uninstalled pip-23.0.1
+2025-12-01 11:44:53,701: DEBUG - Successfully installed pip-25.3 setuptools-80.9.0 wheel-0.45.1
+2025-12-01 11:44:53,908: DEBUG - + /var/www/taiga/venv/bin/pip install -r /var/www/taiga/taiga-back/requirements.txt
+2025-12-01 11:44:54,962: DEBUG - Collecting aggdraw==1.3.15 (from -r /var/www/taiga/taiga-back/requirements.txt (line 7))
+2025-12-01 11:44:54,963: DEBUG -   Using cached aggdraw-1.3.15-cp311-cp311-linux_x86_64.whl
+2025-12-01 11:44:55,033: DEBUG - Collecting amqp==5.1.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 9))
+2025-12-01 11:44:55,039: DEBUG -   Using cached amqp-5.1.1-py3-none-any.whl.metadata (8.9 kB)
+2025-12-01 11:44:55,177: DEBUG - Collecting asana==3.1.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 11))
+2025-12-01 11:44:55,183: DEBUG -   Using cached asana-3.1.0-py2.py3-none-any.whl.metadata (7.4 kB)
+2025-12-01 11:44:55,278: DEBUG - Collecting asgiref==3.6.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 13))
+2025-12-01 11:44:55,287: DEBUG -   Using cached asgiref-3.6.0-py3-none-any.whl.metadata (9.2 kB)
+2025-12-01 11:44:55,329: DEBUG - Collecting async-timeout==4.0.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 15))
+2025-12-01 11:44:55,333: DEBUG -   Using cached async_timeout-4.0.2-py3-none-any.whl.metadata (4.2 kB)
+2025-12-01 11:44:55,378: DEBUG - Collecting attrs==22.2.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 17))
+2025-12-01 11:44:55,383: DEBUG -   Using cached attrs-22.2.0-py3-none-any.whl.metadata (13 kB)
+2025-12-01 11:44:55,444: DEBUG - Collecting backoff==1.6.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 19))
+2025-12-01 11:44:55,444: DEBUG -   Using cached backoff-1.6.0-py3-none-any.whl
+2025-12-01 11:44:55,508: DEBUG - Collecting billiard==3.6.4.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 21))
+2025-12-01 11:44:55,514: DEBUG -   Using cached billiard-3.6.4.0-py3-none-any.whl.metadata (4.5 kB)
+2025-12-01 11:44:55,564: DEBUG - Collecting bleach==4.1.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 23))
+2025-12-01 11:44:55,569: DEBUG -   Using cached bleach-4.1.0-py2.py3-none-any.whl.metadata (24 kB)
+2025-12-01 11:44:55,612: DEBUG - Collecting cairocffi==1.4.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 25))
+2025-12-01 11:44:55,612: DEBUG -   Using cached cairocffi-1.4.0-py3-none-any.whl
+2025-12-01 11:44:55,661: DEBUG - Collecting cairosvg==2.6.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 27))
+2025-12-01 11:44:55,669: DEBUG -   Using cached CairoSVG-2.6.0-py3-none-any.whl.metadata (2.7 kB)
+2025-12-01 11:44:55,767: DEBUG - Collecting celery==5.2.7 (from -r /var/www/taiga/taiga-back/requirements.txt (line 29))
+2025-12-01 11:44:55,772: DEBUG -   Using cached celery-5.2.7-py3-none-any.whl.metadata (20 kB)
+2025-12-01 11:44:55,851: DEBUG - Collecting certifi==2022.12.7 (from -r /var/www/taiga/taiga-back/requirements.txt (line 31))
+2025-12-01 11:44:55,855: DEBUG -   Using cached certifi-2022.12.7-py3-none-any.whl.metadata (2.9 kB)
+2025-12-01 11:44:56,122: DEBUG - Collecting cffi==1.15.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 33))
+2025-12-01 11:44:56,125: DEBUG -   Using cached cffi-1.15.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.1 kB)
+2025-12-01 11:44:56,326: DEBUG - Collecting charset-normalizer==2.0.12 (from -r /var/www/taiga/taiga-back/requirements.txt (line 37))
+2025-12-01 11:44:56,331: DEBUG -   Using cached charset_normalizer-2.0.12-py3-none-any.whl.metadata (11 kB)
+2025-12-01 11:44:56,380: DEBUG - Collecting click==8.1.3 (from -r /var/www/taiga/taiga-back/requirements.txt (line 39))
+2025-12-01 11:44:56,384: DEBUG -   Using cached click-8.1.3-py3-none-any.whl.metadata (3.2 kB)
+2025-12-01 11:44:56,423: DEBUG - Collecting click-didyoumean==0.3.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 45))
+2025-12-01 11:44:56,428: DEBUG -   Using cached click_didyoumean-0.3.0-py3-none-any.whl.metadata (495 bytes)
+2025-12-01 11:44:56,460: DEBUG - Collecting click-plugins==1.1.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 47))
+2025-12-01 11:44:56,467: DEBUG -   Using cached click_plugins-1.1.1-py2.py3-none-any.whl.metadata (6.4 kB)
+2025-12-01 11:44:56,500: DEBUG - Collecting click-repl==0.2.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 49))
+2025-12-01 11:44:56,504: DEBUG -   Using cached click_repl-0.2.0-py3-none-any.whl.metadata (316 bytes)
+2025-12-01 11:44:56,980: DEBUG - Collecting cryptography==39.0.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 51))
+2025-12-01 11:44:56,984: DEBUG -   Using cached cryptography-39.0.1-cp36-abi3-manylinux_2_28_x86_64.whl.metadata (5.6 kB)
+2025-12-01 11:44:57,024: DEBUG - Collecting cssselect==1.2.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 53))
+2025-12-01 11:44:57,028: DEBUG -   Using cached cssselect-1.2.0-py2.py3-none-any.whl.metadata (2.2 kB)
+2025-12-01 11:44:57,062: DEBUG - Collecting cssselect2==0.7.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 55))
+2025-12-01 11:44:57,066: DEBUG -   Using cached cssselect2-0.7.0-py3-none-any.whl.metadata (2.9 kB)
+2025-12-01 11:44:57,117: DEBUG - Collecting cssutils==2.6.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 57))
+2025-12-01 11:44:57,121: DEBUG -   Using cached cssutils-2.6.0-py3-none-any.whl.metadata (9.3 kB)
+2025-12-01 11:44:57,166: DEBUG - Collecting defusedxml==0.7.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 59))
+2025-12-01 11:44:57,170: DEBUG -   Using cached defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+2025-12-01 11:44:57,207: DEBUG - Collecting diff-match-patch==20121119 (from -r /var/www/taiga/taiga-back/requirements.txt (line 61))
+2025-12-01 11:44:57,208: DEBUG -   Using cached diff_match_patch-20121119-py3-none-any.whl
+2025-12-01 11:44:57,353: DEBUG - Collecting django==3.2.19 (from -r /var/www/taiga/taiga-back/requirements.txt (line 63))
+2025-12-01 11:44:57,358: DEBUG -   Using cached Django-3.2.19-py3-none-any.whl.metadata (4.1 kB)
+2025-12-01 11:44:57,479: DEBUG - Collecting django-ipware==1.1.6 (from -r /var/www/taiga/taiga-back/requirements.txt (line 72))
+2025-12-01 11:44:57,479: DEBUG -   Using cached django_ipware-1.1.6-py3-none-any.whl
+2025-12-01 11:44:57,605: DEBUG - Collecting django-jinja==2.10.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 74))
+2025-12-01 11:44:57,609: DEBUG -   Using cached django_jinja-2.10.2-py3-none-any.whl.metadata (2.0 kB)
+2025-12-01 11:44:57,640: DEBUG - Collecting django-pglocks==1.0.4 (from -r /var/www/taiga/taiga-back/requirements.txt (line 76))
+2025-12-01 11:44:57,641: DEBUG -   Using cached django_pglocks-1.0.4-py3-none-any.whl
+2025-12-01 11:44:57,682: DEBUG - Collecting django-picklefield==3.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 78))
+2025-12-01 11:44:57,686: DEBUG -   Using cached django_picklefield-3.1-py3-none-any.whl.metadata (11 kB)
+2025-12-01 11:44:57,722: DEBUG - Collecting django-sampledatahelper==0.4.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 80))
+2025-12-01 11:44:57,722: DEBUG -   Using cached django_sampledatahelper-0.4.1-py3-none-any.whl
+2025-12-01 11:44:57,757: DEBUG - Collecting django-sites==0.11 (from -r /var/www/taiga/taiga-back/requirements.txt (line 82))
+2025-12-01 11:44:57,757: DEBUG -   Using cached django_sites-0.11-py3-none-any.whl
+2025-12-01 11:44:57,794: DEBUG - Collecting django-sr==0.0.4 (from -r /var/www/taiga/taiga-back/requirements.txt (line 84))
+2025-12-01 11:44:57,798: DEBUG -   Using cached django_sr-0.0.4-py3-none-any.whl
+2025-12-01 11:44:57,916: DEBUG - Collecting djmail==2.0.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 86))
+2025-12-01 11:44:57,920: DEBUG -   Using cached djmail-2.0.0-py3-none-any.whl.metadata (1.7 kB)
+2025-12-01 11:44:57,956: DEBUG - Collecting docopt==0.6.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 88))
+2025-12-01 11:44:57,957: DEBUG -   Using cached docopt-0.6.2-py2.py3-none-any.whl
+2025-12-01 11:44:58,004: DEBUG - Collecting easy-thumbnails==2.8.5 (from -r /var/www/taiga/taiga-back/requirements.txt (line 90))
+2025-12-01 11:44:58,010: DEBUG -   Using cached easy_thumbnails-2.8.5-py3-none-any.whl.metadata (14 kB)
+2025-12-01 11:44:58,065: DEBUG - Collecting gunicorn==20.1.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 92))
+2025-12-01 11:44:58,071: DEBUG -   Using cached gunicorn-20.1.0-py3-none-any.whl.metadata (3.8 kB)
+2025-12-01 11:44:58,115: DEBUG - Collecting html5lib==1.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 94))
+2025-12-01 11:44:58,119: DEBUG -   Using cached html5lib-1.1-py2.py3-none-any.whl.metadata (16 kB)
+2025-12-01 11:44:58,165: DEBUG - Collecting idna==3.4 (from -r /var/www/taiga/taiga-back/requirements.txt (line 96))
+2025-12-01 11:44:58,172: DEBUG -   Using cached idna-3.4-py3-none-any.whl.metadata (9.8 kB)
+2025-12-01 11:44:58,232: DEBUG - Collecting imageio==2.25.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 98))
+2025-12-01 11:44:58,237: DEBUG -   Using cached imageio-2.25.1-py3-none-any.whl.metadata (5.0 kB)
+2025-12-01 11:44:58,332: DEBUG - Collecting importlib-metadata==6.0.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 100))
+2025-12-01 11:44:58,337: DEBUG -   Using cached importlib_metadata-6.0.0-py3-none-any.whl.metadata (5.0 kB)
+2025-12-01 11:44:58,387: DEBUG - Collecting jinja2==3.1.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 102))
+2025-12-01 11:44:58,394: DEBUG -   Using cached Jinja2-3.1.2-py3-none-any.whl.metadata (3.5 kB)
+2025-12-01 11:44:58,469: DEBUG - Collecting kombu==5.2.4 (from -r /var/www/taiga/taiga-back/requirements.txt (line 104))
+2025-12-01 11:44:58,474: DEBUG -   Using cached kombu-5.2.4-py3-none-any.whl.metadata (2.7 kB)
+2025-12-01 11:44:59,036: DEBUG - Collecting lxml==4.9.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 106))
+2025-12-01 11:44:59,061: DEBUG -   Using cached lxml-4.9.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata (3.6 kB)
+2025-12-01 11:44:59,171: DEBUG - Collecting markdown==3.4.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 108))
+2025-12-01 11:44:59,180: DEBUG -   Using cached Markdown-3.4.1-py3-none-any.whl.metadata (4.6 kB)
+2025-12-01 11:44:59,329: DEBUG - Collecting markupsafe==2.1.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 112))
+2025-12-01 11:44:59,333: DEBUG -   Using cached MarkupSafe-2.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.2 kB)
+2025-12-01 11:44:59,375: DEBUG - Collecting monotonic==1.6 (from -r /var/www/taiga/taiga-back/requirements.txt (line 114))
+2025-12-01 11:44:59,384: DEBUG -   Using cached monotonic-1.6-py2.py3-none-any.whl.metadata (1.5 kB)
+2025-12-01 11:44:59,444: DEBUG - Collecting netaddr==0.8.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 116))
+2025-12-01 11:44:59,449: DEBUG -   Using cached netaddr-0.8.0-py2.py3-none-any.whl.metadata (4.9 kB)
+2025-12-01 11:44:59,580: DEBUG - Collecting networkx==3.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 118))
+2025-12-01 11:44:59,584: DEBUG -   Using cached networkx-3.0-py3-none-any.whl.metadata (5.1 kB)
+2025-12-01 11:45:00,063: DEBUG - Collecting numpy==1.24.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 120))
+2025-12-01 11:45:00,071: DEBUG -   Using cached numpy-1.24.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.6 kB)
+2025-12-01 11:45:00,131: DEBUG - Collecting oauthlib==3.2.2 (from oauthlib[signedtoken]==3.2.2->-r /var/www/taiga/taiga-back/requirements.txt (line 128))
+2025-12-01 11:45:00,139: DEBUG -   Using cached oauthlib-3.2.2-py3-none-any.whl.metadata (7.5 kB)
+2025-12-01 11:45:00,198: DEBUG - Collecting packaging==23.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 132))
+2025-12-01 11:45:00,225: DEBUG -   Using cached packaging-23.0-py3-none-any.whl.metadata (3.1 kB)
+2025-12-01 11:45:00,709: DEBUG - Collecting pillow==9.4.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 136))
+2025-12-01 11:45:00,714: DEBUG -   Using cached Pillow-9.4.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+2025-12-01 11:45:00,767: DEBUG - Collecting premailer==3.0.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 144))
+2025-12-01 11:45:00,772: DEBUG -   Using cached premailer-3.0.1-py2.py3-none-any.whl.metadata (10 kB)
+2025-12-01 11:45:00,846: DEBUG - Collecting prompt-toolkit==3.0.36 (from -r /var/www/taiga/taiga-back/requirements.txt (line 146))
+2025-12-01 11:45:00,853: DEBUG -   Using cached prompt_toolkit-3.0.36-py3-none-any.whl.metadata (7.0 kB)
+2025-12-01 11:45:01,236: DEBUG - Collecting psd-tools==1.9.18 (from -r /var/www/taiga/taiga-back/requirements.txt (line 148))
+2025-12-01 11:45:01,237: DEBUG -   Using cached psd_tools-1.9.18-py3-none-any.whl
+2025-12-01 11:45:01,357: DEBUG - Collecting psycopg2==2.9.5 (from -r /var/www/taiga/taiga-back/requirements.txt (line 150))
+2025-12-01 11:45:01,357: DEBUG -   Using cached psycopg2-2.9.5-cp311-cp311-linux_x86_64.whl
+2025-12-01 11:45:01,446: DEBUG - Collecting pycparser==2.21 (from -r /var/www/taiga/taiga-back/requirements.txt (line 152))
+2025-12-01 11:45:01,463: DEBUG -   Using cached pycparser-2.21-py2.py3-none-any.whl.metadata (1.1 kB)
+2025-12-01 11:45:01,576: DEBUG - Collecting pygments==2.14.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 154))
+2025-12-01 11:45:01,599: DEBUG -   Using cached Pygments-2.14.0-py3-none-any.whl.metadata (1.6 kB)
+2025-12-01 11:45:01,674: DEBUG - Collecting pyjwt==2.6.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 156))
+2025-12-01 11:45:01,684: DEBUG -   Using cached PyJWT-2.6.0-py3-none-any.whl.metadata (4.0 kB)
+2025-12-01 11:45:01,787: DEBUG - Collecting pymdown-extensions==9.9.2 (from -r /var/www/taiga/taiga-back/requirements.txt (line 158))
+2025-12-01 11:45:01,793: DEBUG -   Using cached pymdown_extensions-9.9.2-py3-none-any.whl.metadata (3.1 kB)
+2025-12-01 11:45:01,857: DEBUG - Collecting python-dateutil==2.7.5 (from -r /var/www/taiga/taiga-back/requirements.txt (line 160))
+2025-12-01 11:45:01,865: DEBUG -   Using cached python_dateutil-2.7.5-py2.py3-none-any.whl.metadata (7.5 kB)
+2025-12-01 11:45:01,909: DEBUG - Collecting python-magic==0.4.15 (from -r /var/www/taiga/taiga-back/requirements.txt (line 164))
+2025-12-01 11:45:01,919: DEBUG -   Using cached python_magic-0.4.15-py2.py3-none-any.whl.metadata (1.0 kB)
+2025-12-01 11:45:02,053: DEBUG - Collecting pytz==2022.7.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 166))
+2025-12-01 11:45:02,058: DEBUG -   Using cached pytz-2022.7.1-py2.py3-none-any.whl.metadata (21 kB)
+2025-12-01 11:45:02,220: DEBUG - Collecting pywavelets==1.4.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 172))
+2025-12-01 11:45:02,225: DEBUG -   Using cached PyWavelets-1.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.9 kB)
+2025-12-01 11:45:02,331: DEBUG - Collecting raven==6.10.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 174))
+2025-12-01 11:45:02,342: DEBUG -   Using cached raven-6.10.0-py2.py3-none-any.whl.metadata (2.9 kB)
+2025-12-01 11:45:02,478: DEBUG - Collecting redis==4.5.3 (from -r /var/www/taiga/taiga-back/requirements.txt (line 176))
+2025-12-01 11:45:02,486: DEBUG -   Using cached redis-4.5.3-py3-none-any.whl.metadata (8.3 kB)
+2025-12-01 11:45:02,612: DEBUG - Collecting requests==2.27.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 178))
+2025-12-01 11:45:02,623: DEBUG -   Using cached requests-2.27.1-py2.py3-none-any.whl.metadata (5.0 kB)
+2025-12-01 11:45:02,697: DEBUG - Collecting requests-oauthlib==1.3.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 185))
+2025-12-01 11:45:02,710: DEBUG -   Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl.metadata (10 kB)
+2025-12-01 11:45:02,848: DEBUG - Collecting rudder-sdk-python==1.0.0b1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 189))
+2025-12-01 11:45:02,857: DEBUG -   Using cached rudder_sdk_python-1.0.0b1-py2.py3-none-any.whl.metadata (2.0 kB)
+2025-12-01 11:45:02,904: DEBUG - Collecting sampledata==0.3.7 (from -r /var/www/taiga/taiga-back/requirements.txt (line 191))
+2025-12-01 11:45:02,905: DEBUG -   Using cached sampledata-0.3.7-py3-none-any.whl
+2025-12-01 11:45:03,254: DEBUG - Collecting scikit-image==0.19.3 (from -r /var/www/taiga/taiga-back/requirements.txt (line 193))
+2025-12-01 11:45:03,256: DEBUG -   Using cached scikit_image-0.19.3-cp311-cp311-linux_x86_64.whl
+2025-12-01 11:45:03,726: DEBUG - Collecting scipy==1.10.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 195))
+2025-12-01 11:45:03,730: DEBUG -   Using cached scipy-1.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (58 kB)
+2025-12-01 11:45:03,887: DEBUG - Collecting serpy==0.1.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 199))
+2025-12-01 11:45:03,892: DEBUG -   Using cached serpy-0.1.1-py2.py3-none-any.whl.metadata (5.3 kB)
+2025-12-01 11:45:03,935: DEBUG - Collecting six==1.16.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 201))
+2025-12-01 11:45:03,944: DEBUG -   Using cached six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+2025-12-01 11:45:04,105: DEBUG - Collecting sqlparse==0.4.3 (from -r /var/www/taiga/taiga-back/requirements.txt (line 213))
+2025-12-01 11:45:04,112: DEBUG -   Using cached sqlparse-0.4.3-py3-none-any.whl.metadata (3.7 kB)
+2025-12-01 11:45:04,208: DEBUG - Collecting tifffile==2023.2.3 (from -r /var/www/taiga/taiga-back/requirements.txt (line 215))
+2025-12-01 11:45:04,212: DEBUG -   Using cached tifffile-2023.2.3-py3-none-any.whl.metadata (29 kB)
+2025-12-01 11:45:04,255: DEBUG - Collecting tinycss2==1.2.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 217))
+2025-12-01 11:45:04,259: DEBUG -   Using cached tinycss2-1.2.1-py3-none-any.whl.metadata (3.0 kB)
+2025-12-01 11:45:04,298: DEBUG - Collecting unidecode==0.4.20 (from -r /var/www/taiga/taiga-back/requirements.txt (line 221))
+2025-12-01 11:45:04,302: DEBUG -   Using cached Unidecode-0.04.20-py2.py3-none-any.whl.metadata (7.0 kB)
+2025-12-01 11:45:04,369: DEBUG - Collecting urllib3==1.26.14 (from -r /var/www/taiga/taiga-back/requirements.txt (line 223))
+2025-12-01 11:45:04,374: DEBUG -   Using cached urllib3-1.26.14-py2.py3-none-any.whl.metadata (47 kB)
+2025-12-01 11:45:04,421: DEBUG - Collecting vine==5.0.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 225))
+2025-12-01 11:45:04,427: DEBUG -   Using cached vine-5.0.0-py2.py3-none-any.whl.metadata (2.2 kB)
+2025-12-01 11:45:04,470: DEBUG - Collecting wcwidth==0.2.6 (from -r /var/www/taiga/taiga-back/requirements.txt (line 230))
+2025-12-01 11:45:04,477: DEBUG -   Using cached wcwidth-0.2.6-py2.py3-none-any.whl.metadata (11 kB)
+2025-12-01 11:45:04,524: DEBUG - Collecting webcolors==1.9.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 232))
+2025-12-01 11:45:04,529: DEBUG -   Using cached webcolors-1.9.1-py2.py3-none-any.whl.metadata (2.1 kB)
+2025-12-01 11:45:04,564: DEBUG - Collecting webencodings==0.5.1 (from -r /var/www/taiga/taiga-back/requirements.txt (line 234))
+2025-12-01 11:45:04,568: DEBUG -   Using cached webencodings-0.5.1-py2.py3-none-any.whl.metadata (2.1 kB)
+2025-12-01 11:45:04,620: DEBUG - Collecting zipp==1.2.0 (from -r /var/www/taiga/taiga-back/requirements.txt (line 240))
+2025-12-01 11:45:04,624: DEBUG -   Using cached zipp-1.2.0-py2.py3-none-any.whl.metadata (1.8 kB)
+2025-12-01 11:45:05,101: DEBUG - Requirement already satisfied: setuptools>=3.0 in /var/www/taiga/venv/lib/python3.11/site-packages (from gunicorn==20.1.0->-r /var/www/taiga/taiga-back/requirements.txt (line 92)) (80.9.0)
+2025-12-01 11:45:05,608: DEBUG - Using cached amqp-5.1.1-py3-none-any.whl (50 kB)
+2025-12-01 11:45:05,613: DEBUG - Using cached asana-3.1.0-py2.py3-none-any.whl (83 kB)
+2025-12-01 11:45:05,616: DEBUG - Using cached requests-2.27.1-py2.py3-none-any.whl (63 kB)
+2025-12-01 11:45:05,623: DEBUG - Using cached charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+2025-12-01 11:45:05,630: DEBUG - Using cached idna-3.4-py3-none-any.whl (61 kB)
+2025-12-01 11:45:05,636: DEBUG - Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+2025-12-01 11:45:05,639: DEBUG - Using cached urllib3-1.26.14-py2.py3-none-any.whl (140 kB)
+2025-12-01 11:45:05,645: DEBUG - Using cached asgiref-3.6.0-py3-none-any.whl (23 kB)
+2025-12-01 11:45:05,649: DEBUG - Using cached async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+2025-12-01 11:45:05,653: DEBUG - Using cached attrs-22.2.0-py3-none-any.whl (60 kB)
+2025-12-01 11:45:05,658: DEBUG - Using cached billiard-3.6.4.0-py3-none-any.whl (89 kB)
+2025-12-01 11:45:05,663: DEBUG - Using cached bleach-4.1.0-py2.py3-none-any.whl (157 kB)
+2025-12-01 11:45:05,674: DEBUG - Using cached CairoSVG-2.6.0-py3-none-any.whl (43 kB)
+2025-12-01 11:45:05,680: DEBUG - Using cached celery-5.2.7-py3-none-any.whl (405 kB)
+2025-12-01 11:45:05,686: DEBUG - Using cached click-8.1.3-py3-none-any.whl (96 kB)
+2025-12-01 11:45:05,691: DEBUG - Using cached kombu-5.2.4-py3-none-any.whl (189 kB)
+2025-12-01 11:45:05,696: DEBUG - Using cached vine-5.0.0-py2.py3-none-any.whl (9.4 kB)
+2025-12-01 11:45:05,702: DEBUG - Using cached certifi-2022.12.7-py3-none-any.whl (155 kB)
+2025-12-01 11:45:05,707: DEBUG - Using cached cffi-1.15.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (462 kB)
+2025-12-01 11:45:05,715: DEBUG - Using cached click_didyoumean-0.3.0-py3-none-any.whl (2.7 kB)
+2025-12-01 11:45:05,719: DEBUG - Using cached click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+2025-12-01 11:45:05,724: DEBUG - Using cached click_repl-0.2.0-py3-none-any.whl (5.2 kB)
+2025-12-01 11:45:05,728: DEBUG - Using cached cryptography-39.0.1-cp36-abi3-manylinux_2_28_x86_64.whl (4.2 MB)
+2025-12-01 11:45:05,743: DEBUG - Using cached cssselect-1.2.0-py2.py3-none-any.whl (18 kB)
+2025-12-01 11:45:05,747: DEBUG - Using cached cssselect2-0.7.0-py3-none-any.whl (15 kB)
+2025-12-01 11:45:05,752: DEBUG - Using cached cssutils-2.6.0-py3-none-any.whl (399 kB)
+2025-12-01 11:45:05,759: DEBUG - Using cached defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+2025-12-01 11:45:05,765: DEBUG - Using cached Django-3.2.19-py3-none-any.whl (7.9 MB)
+2025-12-01 11:45:05,811: DEBUG - Using cached django_jinja-2.10.2-py3-none-any.whl (23 kB)
+2025-12-01 11:45:05,817: DEBUG - Using cached django_picklefield-3.1-py3-none-any.whl (9.5 kB)
+2025-12-01 11:45:05,828: DEBUG - Using cached djmail-2.0.0-py3-none-any.whl (14 kB)
+2025-12-01 11:45:05,835: DEBUG - Using cached easy_thumbnails-2.8.5-py3-none-any.whl (75 kB)
+2025-12-01 11:45:05,841: DEBUG - Using cached gunicorn-20.1.0-py3-none-any.whl (79 kB)
+2025-12-01 11:45:05,847: DEBUG - Using cached html5lib-1.1-py2.py3-none-any.whl (112 kB)
+2025-12-01 11:45:05,855: DEBUG - Using cached imageio-2.25.1-py3-none-any.whl (3.4 MB)
+2025-12-01 11:45:05,870: DEBUG - Using cached importlib_metadata-6.0.0-py3-none-any.whl (21 kB)
+2025-12-01 11:45:05,874: DEBUG - Using cached Jinja2-3.1.2-py3-none-any.whl (133 kB)
+2025-12-01 11:45:05,879: DEBUG - Using cached lxml-4.9.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (7.2 MB)
+2025-12-01 11:45:05,912: DEBUG - Using cached Markdown-3.4.1-py3-none-any.whl (93 kB)
+2025-12-01 11:45:05,922: DEBUG - Using cached MarkupSafe-2.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (27 kB)
+2025-12-01 11:45:05,931: DEBUG - Using cached monotonic-1.6-py2.py3-none-any.whl (8.2 kB)
+2025-12-01 11:45:05,938: DEBUG - Using cached netaddr-0.8.0-py2.py3-none-any.whl (1.9 MB)
+2025-12-01 11:45:05,950: DEBUG - Using cached networkx-3.0-py3-none-any.whl (2.0 MB)
+2025-12-01 11:45:05,960: DEBUG - Using cached numpy-1.24.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+2025-12-01 11:45:06,055: DEBUG - Using cached oauthlib-3.2.2-py3-none-any.whl (151 kB)
+2025-12-01 11:45:06,065: DEBUG - Using cached packaging-23.0-py3-none-any.whl (42 kB)
+2025-12-01 11:45:06,069: DEBUG - Using cached Pillow-9.4.0-cp311-cp311-manylinux_2_28_x86_64.whl (3.4 MB)
+2025-12-01 11:45:06,086: DEBUG - Using cached premailer-3.0.1-py2.py3-none-any.whl (20 kB)
+2025-12-01 11:45:06,091: DEBUG - Using cached prompt_toolkit-3.0.36-py3-none-any.whl (386 kB)
+2025-12-01 11:45:06,099: DEBUG - Using cached pycparser-2.21-py2.py3-none-any.whl (118 kB)
+2025-12-01 11:45:06,105: DEBUG - Using cached Pygments-2.14.0-py3-none-any.whl (1.1 MB)
+2025-12-01 11:45:06,115: DEBUG - Using cached PyJWT-2.6.0-py3-none-any.whl (20 kB)
+2025-12-01 11:45:06,120: DEBUG - Using cached pymdown_extensions-9.9.2-py3-none-any.whl (219 kB)
+2025-12-01 11:45:06,124: DEBUG - Using cached python_dateutil-2.7.5-py2.py3-none-any.whl (225 kB)
+2025-12-01 11:45:06,130: DEBUG - Using cached python_magic-0.4.15-py2.py3-none-any.whl (5.5 kB)
+2025-12-01 11:45:06,136: DEBUG - Using cached pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+2025-12-01 11:45:06,139: DEBUG - Using cached PyWavelets-1.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.0 MB)
+2025-12-01 11:45:06,165: DEBUG - Using cached raven-6.10.0-py2.py3-none-any.whl (284 kB)
+2025-12-01 11:45:06,170: DEBUG - Using cached redis-4.5.3-py3-none-any.whl (238 kB)
+2025-12-01 11:45:06,174: DEBUG - Using cached rudder_sdk_python-1.0.0b1-py2.py3-none-any.whl (16 kB)
+2025-12-01 11:45:06,178: DEBUG - Using cached scipy-1.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.1 MB)
+2025-12-01 11:45:06,358: DEBUG - Using cached serpy-0.1.1-py2.py3-none-any.whl (9.1 kB)
+2025-12-01 11:45:06,360: DEBUG - Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+2025-12-01 11:45:06,364: DEBUG - Using cached sqlparse-0.4.3-py3-none-any.whl (42 kB)
+2025-12-01 11:45:06,368: DEBUG - Using cached tifffile-2023.2.3-py3-none-any.whl (215 kB)
+2025-12-01 11:45:06,372: DEBUG - Using cached tinycss2-1.2.1-py3-none-any.whl (21 kB)
+2025-12-01 11:45:06,375: DEBUG - Using cached Unidecode-0.04.20-py2.py3-none-any.whl (228 kB)
+2025-12-01 11:45:06,380: DEBUG - Using cached wcwidth-0.2.6-py2.py3-none-any.whl (29 kB)
+2025-12-01 11:45:06,383: DEBUG - Using cached webcolors-1.9.1-py2.py3-none-any.whl (10 kB)
+2025-12-01 11:45:06,387: DEBUG - Using cached webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+2025-12-01 11:45:06,390: DEBUG - Using cached zipp-1.2.0-py2.py3-none-any.whl (4.8 kB)
+2025-12-01 11:45:07,047: DEBUG - Installing collected packages: webencodings, wcwidth, unidecode, raven, pytz, python-magic, netaddr, monotonic, docopt, djmail, django-ipware, diff-match-patch, billiard, backoff, zipp, vine, urllib3, tinycss2, sqlparse, six, redis, pyjwt, pygments, pycparser, psycopg2, prompt-toolkit, pillow, packaging, oauthlib, numpy, networkx, markupsafe, markdown, lxml, idna, gunicorn, defusedxml, cssutils, cssselect, click, charset-normalizer, certifi, attrs, async-timeout, asgiref, aggdraw, webcolors, tifffile, serpy, scipy, sampledata, requests, pywavelets, python-dateutil, pymdown-extensions, jinja2, importlib-metadata, imageio, html5lib, django-pglocks, django, cssselect2, click-repl, click-plugins, click-didyoumean, cffi, bleach, amqp, scikit-image, rudder-sdk-python, requests-oauthlib, premailer, kombu, easy-thumbnails, django-sr, django-sites, django-sampledatahelper, django-picklefield, django-jinja, cryptography, cairocffi, psd-tools, celery, cairosvg, asana
+2025-12-01 11:45:35,051: DEBUG - 
+2025-12-01 11:45:35,060: DEBUG - Successfully installed aggdraw-1.3.15 amqp-5.1.1 asana-3.1.0 asgiref-3.6.0 async-timeout-4.0.2 attrs-22.2.0 backoff-1.6.0 billiard-3.6.4.0 bleach-4.1.0 cairocffi-1.4.0 cairosvg-2.6.0 celery-5.2.7 certifi-2022.12.7 cffi-1.15.1 charset-normalizer-2.0.12 click-8.1.3 click-didyoumean-0.3.0 click-plugins-1.1.1 click-repl-0.2.0 cryptography-39.0.1 cssselect-1.2.0 cssselect2-0.7.0 cssutils-2.6.0 defusedxml-0.7.1 diff-match-patch-20121119 django-3.2.19 django-ipware-1.1.6 django-jinja-2.10.2 django-pglocks-1.0.4 django-picklefield-3.1 django-sampledatahelper-0.4.1 django-sites-0.11 django-sr-0.0.4 djmail-2.0.0 docopt-0.6.2 easy-thumbnails-2.8.5 gunicorn-20.1.0 html5lib-1.1 idna-3.4 imageio-2.25.1 importlib-metadata-6.0.0 jinja2-3.1.2 kombu-5.2.4 lxml-4.9.2 markdown-3.4.1 markupsafe-2.1.2 monotonic-1.6 netaddr-0.8.0 networkx-3.0 numpy-1.24.2 oauthlib-3.2.2 packaging-23.0 pillow-9.4.0 premailer-3.0.1 prompt-toolkit-3.0.36 psd-tools-1.9.18 psycopg2-2.9.5 pycparser-2.21 pygments-2.14.0 pyjwt-2.6.0 pymdown-extensions-9.9.2 python-dateutil-2.7.5 python-magic-0.4.15 pytz-2022.7.1 pywavelets-1.4.1 raven-6.10.0 redis-4.5.3 requests-2.27.1 requests-oauthlib-1.3.1 rudder-sdk-python-1.0.0b1 sampledata-0.3.7 scikit-image-0.19.3 scipy-1.10.0 serpy-0.1.1 six-1.16.0 sqlparse-0.4.3 tifffile-2023.2.3 tinycss2-1.2.1 unidecode-0.4.20 urllib3-1.26.14 vine-5.0.0 wcwidth-0.2.6 webcolors-1.9.1 webencodings-0.5.1 zipp-1.2.0
+2025-12-01 11:45:35,926: DEBUG - + /var/www/taiga/venv/bin/pip install gunicorn gevent
+2025-12-01 11:45:36,634: DEBUG - Requirement already satisfied: gunicorn in /var/www/taiga/venv/lib/python3.11/site-packages (20.1.0)
+2025-12-01 11:45:37,121: DEBUG - Collecting gevent
+2025-12-01 11:45:37,124: DEBUG -   Using cached gevent-25.9.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (14 kB)
+2025-12-01 11:45:37,139: DEBUG - Requirement already satisfied: setuptools>=3.0 in /var/www/taiga/venv/lib/python3.11/site-packages (from gunicorn) (80.9.0)
+2025-12-01 11:45:37,434: DEBUG - Collecting greenlet>=3.2.2 (from gevent)
+2025-12-01 11:45:37,438: DEBUG -   Using cached greenlet-3.2.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (4.1 kB)
+2025-12-01 11:45:37,472: DEBUG - Collecting zope.event (from gevent)
+2025-12-01 11:45:37,476: DEBUG -   Using cached zope_event-6.1-py3-none-any.whl.metadata (5.1 kB)
+2025-12-01 11:45:37,709: DEBUG - Collecting zope.interface (from gevent)
+2025-12-01 11:45:37,713: DEBUG -   Using cached zope_interface-8.1.1-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl.metadata (45 kB)
+2025-12-01 11:45:37,743: DEBUG - Using cached gevent-25.9.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.1 MB)
+2025-12-01 11:45:37,750: DEBUG - Using cached greenlet-3.2.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (587 kB)
+2025-12-01 11:45:37,754: DEBUG - Using cached zope_event-6.1-py3-none-any.whl (6.4 kB)
+2025-12-01 11:45:37,758: DEBUG - Using cached zope_interface-8.1.1-cp311-cp311-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl (259 kB)
+2025-12-01 11:45:37,969: DEBUG - Installing collected packages: zope.interface, zope.event, greenlet, gevent
+2025-12-01 11:45:39,196: DEBUG - 
+2025-12-01 11:45:39,205: DEBUG - Successfully installed gevent-25.9.1 greenlet-3.2.4 zope.event-6.1 zope.interface-8.1.1
+2025-12-01 11:45:39,478: INFO - [#######++...........] > Adding Taiga configuration files...
+2025-12-01 11:45:39,480: DEBUG - + ynh_config_add --template=local.py --destination=/var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,572: DEBUG - + jinja=0
+2025-12-01 11:45:39,573: DEBUG - + '[' -f /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/conf/local.py ']'
+2025-12-01 11:45:39,573: DEBUG - + template_path=/var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/conf/local.py
+2025-12-01 11:45:39,574: DEBUG - + ynh_backup_if_checksum_is_different /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,704: DEBUG - + touch /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,707: DEBUG - + chmod 640 /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,710: DEBUG - + _ynh_apply_default_permissions /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,710: DEBUG - + local target=/var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,711: DEBUG - + ynh_system_user_exists --username=taiga
+2025-12-01 11:45:39,735: DEBUG - + getent passwd taiga
+2025-12-01 11:45:39,744: DEBUG - + '[' -f /var/www/taiga/taiga-back/settings/local.py ']'
+2025-12-01 11:45:39,745: DEBUG - + is_in_dir /var/www/taiga/taiga-back/settings/local.py /var/www/taiga
+2025-12-01 11:45:39,745: DEBUG - + '[' -n /var/www/taiga ']'
+2025-12-01 11:45:39,746: DEBUG - ++ realpath /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,749: DEBUG - + local child=/var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,751: DEBUG - ++ realpath /var/www/taiga
+2025-12-01 11:45:39,755: DEBUG - + local parent=/var/www/taiga
+2025-12-01 11:45:39,755: DEBUG - + [[ /var/www/taiga/taiga-back/settings/local.py =~ ^/var/www/taiga ]]
+2025-12-01 11:45:39,756: DEBUG - + chmod 600 /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,758: DEBUG - + chown taiga:taiga /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,765: DEBUG - + return
+2025-12-01 11:45:39,765: DEBUG - + [[ 0 == 1 ]]
+2025-12-01 11:45:39,765: DEBUG - + cp -f /var/cache/yunohost/app_tmp_work_dirs/app_7c1hdt12/conf/local.py /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,769: DEBUG - + _ynh_replace_vars /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,769: DEBUG - + local file=/var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,769: DEBUG - + local -a uniques_vars
+2025-12-01 11:45:39,769: DEBUG - + mapfile -t uniques_vars
+2025-12-01 11:45:39,773: DEBUG - ++ grep -oP '__[A-Z0-9]+?[A-Z0-9_]*?[A-Z0-9]*?__' /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:39,775: DEBUG - ++ sed 's@__\([^.]*\)__@\L\1@g'
+2025-12-01 11:45:39,775: DEBUG - ++ sort --unique
+2025-12-01 11:45:39,822: DEBUG - + ynh_store_file_checksum /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:40,008: DEBUG - + chmod 600 /var/www/taiga/taiga-back/settings/local.py
+2025-12-01 11:45:40,012: INFO - [#########+..........] > Building frontend...
+2025-12-01 11:45:40,013: DEBUG - + ynh_install_nodejs --nodejs_version=18
+2025-12-01 11:45:40,017: WARNING - ./install: line 72: ynh_install_nodejs: command not found
+2025-12-01 11:45:40,018: DEBUG - + ynh_exit_properly
+2025-12-01 11:45:40,019: DEBUG - + local exit_code=127
+2025-12-01 11:45:40,019: DEBUG - + [[ install =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:45:40,019: DEBUG - + '[' 127 -eq 0 ']'
+2025-12-01 11:45:40,624: ERROR - Unable to install taiga: An error occurred inside the app installation script

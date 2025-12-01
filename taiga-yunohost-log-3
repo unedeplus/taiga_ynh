@@ -1,0 +1,553 @@
+args:
+  app: https://github.com/unedeplus/taiga_ynh
+  force: false
+  ignore_yunohost_version: false
+  label: null
+  no_remove_on_failure: false
+ended_at: 2025-12-01 10:37:39.281937
+env:
+  YNH_APP_ACTION: install
+  YNH_APP_ARG_ADMIN: psychen
+  YNH_APP_ARG_DOMAIN: taiga.domain2.tld
+  YNH_APP_ARG_INIT_MAIN_PERMISSION: visitors
+  YNH_APP_ARG_PATH: /taiga
+  YNH_APP_BASEDIR: /var/cache/yunohost/app_tmp_work_dirs/app_fsexoi4i
+  YNH_APP_ID: taiga
+  YNH_APP_INSTANCE_NAME: taiga
+  YNH_APP_INSTANCE_NUMBER: '1'
+  YNH_APP_MANIFEST_VERSION: 6.7.0~ynh1
+  YNH_APP_PACKAGING_FORMAT: '2.0'
+  YNH_ARCH: amd64
+  YNH_DEBIAN_VERSION: bookworm
+  YNH_DEFAULT_PHP_VERSION: '8.2'
+  YNH_HELPERS_VERSION: '2.1'
+error: An error occurred inside the app installation script
+interface: cli
+operation: app_install
+parent: null
+related_to:
+- - app
+  - taiga
+started_at: 2025-12-01 10:36:41.452853
+started_by: ******
+success: false
+yunohost_version: 12.1.35
+
+============
+
+2025-12-01 11:36:42,535: INFO - Installing taiga…
+2025-12-01 11:36:42,590: INFO - Provisioning sources...
+2025-12-01 11:36:42,601: DEBUG - Prefetching asset main: https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ...
+2025-12-01 11:36:43,851: DEBUG - Prefetching asset front: https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ...
+2025-12-01 11:36:45,206: INFO - Provisioning system_user...
+2025-12-01 11:36:45,797: INFO - Provisioning install_dir...
+2025-12-01 11:36:45,819: INFO - Provisioning data_dir...
+2025-12-01 11:36:45,824: INFO - Provisioning permissions...
+2025-12-01 11:36:45,845: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:36:45,859: DEBUG - Permission 'taiga.main' created
+2025-12-01 11:36:45,875: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:36:45,882: DEBUG - Permission 'taiga.main' updated
+2025-12-01 11:36:46,044: DEBUG - Creating LDAP perm taiga.main
+2025-12-01 11:36:46,074: DEBUG - Permissions were resynchronized to LDAP
+2025-12-01 11:36:46,349: DEBUG - Formating result in 'export' mode
+2025-12-01 11:36:46,351: DEBUG - SSO and portal configurations regenerated
+2025-12-01 11:36:46,351: INFO - Provisioning ports...
+2025-12-01 11:36:46,419: INFO - Provisioning apt...
+2025-12-01 11:36:46,450: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./provision_or_update_apt"  7>&1']'
+2025-12-01 11:36:46,461: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:36:46,464: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:36:46,467: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:36:46,468: DEBUG - +++ pwd
+2025-12-01 11:36:46,469: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:36:46,469: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:36:46,487: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:36:46,488: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:36:46,518: DEBUG - + ynh_abort_if_errors
+2025-12-01 11:36:46,518: DEBUG - + trap ynh_exit_properly EXIT
+2025-12-01 11:36:46,519: DEBUG - + ynh_apt_install_dependencies python3 python3-venv python3-pip python3-dev build-essential libpq-dev git gettext libxml2-dev libxslt1-dev zlib1g-dev libjpeg-dev libfreetype6-dev libtiff5-dev redis-server rabbitmq-server postgresql postgresql-contrib
+2025-12-01 11:36:46,519: DEBUG - ++ sed 's/\([^\<=\>]\)\ \([^(]\)/\1, \2/g'
+2025-12-01 11:36:46,520: DEBUG - ++ sed 's/|/ | /'
+2025-12-01 11:36:46,527: DEBUG - + local 'dependencies=python3, python3-venv, python3-pip, python3-dev, build-essential, libpq-dev, git, gettext, libxml2-dev, libxslt1-dev, zlib1g-dev, libjpeg-dev, libfreetype6-dev, libtiff5-dev, redis-server, rabbitmq-server, postgresql, postgresql-contrib'
+2025-12-01 11:36:46,528: DEBUG - ++ ynh_read_manifest version
+2025-12-01 11:36:46,529: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_jly8_2ka/manifest.toml
+2025-12-01 11:36:46,530: DEBUG - ++ toml_to_json
+2025-12-01 11:36:46,531: DEBUG - ++ jq .version --raw-output
+2025-12-01 11:36:46,531: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:36:46,678: DEBUG - + local version=6.7.0~ynh1
+2025-12-01 11:36:46,678: DEBUG - + local app_ynh_deps=taiga-ynh-deps
+2025-12-01 11:36:46,678: DEBUG - + grep '[<=>]'
+2025-12-01 11:36:46,686: DEBUG - ++ grep -oP '(?<=php)[0-9.]+(?=-|\>|)'
+2025-12-01 11:36:46,686: DEBUG - ++ sort -u
+2025-12-01 11:36:46,694: DEBUG - + local specific_php_version=
+2025-12-01 11:36:46,694: DEBUG - + grep --quiet php
+2025-12-01 11:36:46,698: DEBUG - ++ _ynh_apt_package_is_installed postgresql-15
+2025-12-01 11:36:46,698: DEBUG - ++ local package=postgresql-15
+2025-12-01 11:36:46,699: DEBUG - ++ dpkg-query --show '--showformat=${db:Status-Status}' postgresql-15
+2025-12-01 11:36:46,699: DEBUG - ++ grep --quiet '^installed$'
+2025-12-01 11:36:46,744: DEBUG - ++ echo yes
+2025-12-01 11:36:46,745: DEBUG - + local psql_installed=yes
+2025-12-01 11:36:46,746: DEBUG - + [[ true == \t\r\u\e ]]
+2025-12-01 11:36:46,746: DEBUG - + YNH_APT_INSTALL_DEPENDENCIES_REPLACE=false
+2025-12-01 11:36:46,746: DEBUG - ++ mktemp --directory
+2025-12-01 11:36:46,752: DEBUG - + local TMPDIR=/tmp/tmp.qi4uAGlISP
+2025-12-01 11:36:46,753: DEBUG - + mkdir -p /tmp/tmp.qi4uAGlISP/taiga-ynh-deps/DEBIAN
+2025-12-01 11:36:46,757: DEBUG - + chmod -R 755 /tmp/tmp.qi4uAGlISP/taiga-ynh-deps
+2025-12-01 11:36:46,762: DEBUG - + cat
+2025-12-01 11:36:46,768: DEBUG - + _ynh_apt update
+2025-12-01 11:36:46,768: DEBUG - + [[ update == \u\p\d\a\t\e ]]
+2025-12-01 11:36:46,768: DEBUG - + local aptcache=/var/cache/apt/pkgcache.bin
+2025-12-01 11:36:46,769: DEBUG - + sleep 1
+2025-12-01 11:36:47,771: DEBUG - + [[ -e /var/cache/apt/pkgcache.bin ]]
+2025-12-01 11:36:47,771: DEBUG - ++ find /var/cache/apt/pkgcache.bin -mmin -30
+2025-12-01 11:36:47,775: DEBUG - + [[ -n /var/cache/apt/pkgcache.bin ]]
+2025-12-01 11:36:47,775: DEBUG - ++ find /etc/apt/ -newer /var/cache/apt/pkgcache.bin
+2025-12-01 11:36:47,785: DEBUG - + [[ -z '' ]]
+2025-12-01 11:36:47,785: DEBUG - apt cache was already updated in the last 30 minutes, skipping 'apt update'
+2025-12-01 11:36:47,786: DEBUG - + return
+2025-12-01 11:36:47,786: DEBUG - + _ynh_wait_dpkg_free
+2025-12-01 11:36:48,055: DEBUG - + return 0
+2025-12-01 11:36:48,055: DEBUG - + dpkg-deb --build /tmp/tmp.qi4uAGlISP/taiga-ynh-deps /tmp/tmp.qi4uAGlISP/taiga-ynh-deps.deb
+2025-12-01 11:36:48,121: DEBUG - + dpkg --force-depends --install /tmp/tmp.qi4uAGlISP/taiga-ynh-deps.deb
+2025-12-01 11:36:48,122: DEBUG - + tee /tmp/tmp.qi4uAGlISP/dpkg_log
+2025-12-01 11:36:48,429: DEBUG - Selecting previously unselected package taiga-ynh-deps.
+2025-12-01 11:36:48,653: DEBUG - (Reading database ... 150868 files and directories currently installed.)
+2025-12-01 11:36:48,700: DEBUG - Preparing to unpack .../taiga-ynh-deps.deb ...
+2025-12-01 11:36:48,718: DEBUG - Unpacking taiga-ynh-deps (6.7.0~ynh1) ...
+2025-12-01 11:36:48,859: DEBUG - dpkg: taiga-ynh-deps: dependency problems, but configuring anyway as you requested:
+2025-12-01 11:36:48,859: DEBUG -  taiga-ynh-deps depends on libxml2-dev; however:
+2025-12-01 11:36:48,859: DEBUG -   Package libxml2-dev is not installed.
+2025-12-01 11:36:48,859: DEBUG -  taiga-ynh-deps depends on libxslt1-dev; however:
+2025-12-01 11:36:48,859: DEBUG -   Package libxslt1-dev is not installed.
+2025-12-01 11:36:48,860: DEBUG -  taiga-ynh-deps depends on libjpeg-dev; however:
+2025-12-01 11:36:48,860: DEBUG -   Package libjpeg-dev is not installed.
+2025-12-01 11:36:48,860: DEBUG -  taiga-ynh-deps depends on libfreetype6-dev; however:
+2025-12-01 11:36:48,860: DEBUG -   Package libfreetype6-dev is not installed.
+2025-12-01 11:36:48,860: DEBUG -  taiga-ynh-deps depends on libtiff5-dev; however:
+2025-12-01 11:36:48,860: DEBUG -   Package libtiff5-dev is not installed.
+2025-12-01 11:36:48,860: DEBUG -  taiga-ynh-deps depends on rabbitmq-server; however:
+2025-12-01 11:36:48,860: DEBUG -   Package rabbitmq-server is not installed.
+2025-12-01 11:36:48,860: DEBUG -  taiga-ynh-deps depends on postgresql-contrib; however:
+2025-12-01 11:36:48,861: DEBUG -   Package postgresql-contrib is not installed.
+2025-12-01 11:36:48,861: DEBUG - 
+2025-12-01 11:36:48,861: DEBUG - Setting up taiga-ynh-deps (6.7.0~ynh1) ...
+2025-12-01 11:36:48,949: DEBUG - + _ynh_apt_install --fix-broken
+2025-12-01 11:36:48,949: DEBUG - + _ynh_apt --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken
+2025-12-01 11:36:48,949: DEBUG - + [[ --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken == \u\p\d\a\t\e ]]
+2025-12-01 11:36:48,949: DEBUG - + _ynh_wait_dpkg_free
+2025-12-01 11:36:49,229: DEBUG - + return 0
+2025-12-01 11:36:49,230: DEBUG - + apt-get --assume-yes --quiet -o=Acquire::Retries=3 -o=Dpkg::Use-Pty=0 --no-remove --option Dpkg::Options::=--force-confdef --option Dpkg::Options::=--force-confold install --fix-broken
+2025-12-01 11:36:49,533: DEBUG - Reading package lists...
+2025-12-01 11:36:50,011: DEBUG - Building dependency tree...
+2025-12-01 11:36:50,012: DEBUG - Reading state information...
+2025-12-01 11:36:50,281: DEBUG - Correcting dependencies... Done
+2025-12-01 11:36:50,737: DEBUG - The following additional packages will be installed:
+2025-12-01 11:36:50,737: DEBUG -   erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets
+2025-12-01 11:36:50,737: DEBUG -   erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key
+2025-12-01 11:36:50,737: DEBUG -   erlang-runtime-tools erlang-snmp erlang-ssl erlang-syntax-tools erlang-tftp
+2025-12-01 11:36:50,737: DEBUG -   erlang-tools erlang-xmerl icu-devtools libbrotli-dev libdeflate-dev
+2025-12-01 11:36:50,738: DEBUG -   libfreetype-dev libfreetype6-dev libicu-dev libjbig-dev libjpeg-dev
+2025-12-01 11:36:50,738: DEBUG -   libjpeg62-turbo-dev liblerc-dev liblzma-dev libsctp1 libtiff-dev
+2025-12-01 11:36:50,738: DEBUG -   libtiff5-dev libtiffxx6 libwebp-dev libxml2-dev libxslt1-dev libzstd-dev
+2025-12-01 11:36:50,738: DEBUG -   postgresql-contrib rabbitmq-server
+2025-12-01 11:36:50,743: DEBUG - Suggested packages:
+2025-12-01 11:36:50,743: DEBUG -   erlang erlang-manpages erlang-doc freetype2-doc icu-doc liblzma-doc
+2025-12-01 11:36:50,743: DEBUG -   lksctp-tools
+2025-12-01 11:36:50,845: DEBUG - The following NEW packages will be installed:
+2025-12-01 11:36:50,845: DEBUG -   erlang-asn1 erlang-base erlang-crypto erlang-eldap erlang-ftp erlang-inets
+2025-12-01 11:36:50,845: DEBUG -   erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key
+2025-12-01 11:36:50,845: DEBUG -   erlang-runtime-tools erlang-snmp erlang-ssl erlang-syntax-tools erlang-tftp
+2025-12-01 11:36:50,846: DEBUG -   erlang-tools erlang-xmerl icu-devtools libbrotli-dev libdeflate-dev
+2025-12-01 11:36:50,846: DEBUG -   libfreetype-dev libfreetype6-dev libicu-dev libjbig-dev libjpeg-dev
+2025-12-01 11:36:50,846: DEBUG -   libjpeg62-turbo-dev liblerc-dev liblzma-dev libsctp1 libtiff-dev
+2025-12-01 11:36:50,847: DEBUG -   libtiff5-dev libtiffxx6 libwebp-dev libxml2-dev libxslt1-dev libzstd-dev
+2025-12-01 11:36:50,847: DEBUG -   postgresql-contrib rabbitmq-server
+2025-12-01 11:36:52,190: DEBUG - 0 upgraded, 38 newly installed, 0 to remove and 43 not upgraded.
+2025-12-01 11:36:52,191: DEBUG - Need to get 0 B/49.4 MB of archives.
+2025-12-01 11:36:52,191: DEBUG - After this operation, 121 MB of additional disk space will be used.
+2025-12-01 11:36:52,334: DEBUG - Selecting previously unselected package erlang-base.
+2025-12-01 11:36:52,501: DEBUG - (Reading database ... 150868 files and directories currently installed.)
+2025-12-01 11:36:52,531: DEBUG - Preparing to unpack .../00-erlang-base_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:52,546: DEBUG - Unpacking erlang-base (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:53,704: DEBUG - Selecting previously unselected package erlang-asn1.
+2025-12-01 11:36:53,748: DEBUG - Preparing to unpack .../01-erlang-asn1_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:53,774: DEBUG - Unpacking erlang-asn1 (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:54,011: DEBUG - Selecting previously unselected package erlang-crypto.
+2025-12-01 11:36:54,047: DEBUG - Preparing to unpack .../02-erlang-crypto_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:54,057: DEBUG - Unpacking erlang-crypto (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:54,182: DEBUG - Selecting previously unselected package erlang-public-key.
+2025-12-01 11:36:54,223: DEBUG - Preparing to unpack .../03-erlang-public-key_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:54,230: DEBUG - Unpacking erlang-public-key (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:54,436: DEBUG - Selecting previously unselected package erlang-mnesia.
+2025-12-01 11:36:54,481: DEBUG - Preparing to unpack .../04-erlang-mnesia_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:54,493: DEBUG - Unpacking erlang-mnesia (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:54,732: DEBUG - Selecting previously unselected package erlang-runtime-tools.
+2025-12-01 11:36:54,765: DEBUG - Preparing to unpack .../05-erlang-runtime-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:54,771: DEBUG - Unpacking erlang-runtime-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:54,945: DEBUG - Selecting previously unselected package erlang-ssl.
+2025-12-01 11:36:54,995: DEBUG - Preparing to unpack .../06-erlang-ssl_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:55,024: DEBUG - Unpacking erlang-ssl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:55,356: DEBUG - Selecting previously unselected package erlang-eldap.
+2025-12-01 11:36:55,400: DEBUG - Preparing to unpack .../07-erlang-eldap_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:55,413: DEBUG - Unpacking erlang-eldap (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:55,542: DEBUG - Selecting previously unselected package erlang-ftp.
+2025-12-01 11:36:55,580: DEBUG - Preparing to unpack .../08-erlang-ftp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:55,591: DEBUG - Unpacking erlang-ftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:55,697: DEBUG - Selecting previously unselected package erlang-tftp.
+2025-12-01 11:36:55,739: DEBUG - Preparing to unpack .../09-erlang-tftp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:55,756: DEBUG - Unpacking erlang-tftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:55,914: DEBUG - Selecting previously unselected package erlang-inets.
+2025-12-01 11:36:55,959: DEBUG - Preparing to unpack .../10-erlang-inets_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:55,971: DEBUG - Unpacking erlang-inets (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:56,252: DEBUG - Selecting previously unselected package erlang-snmp.
+2025-12-01 11:36:56,321: DEBUG - Preparing to unpack .../11-erlang-snmp_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:56,332: DEBUG - Unpacking erlang-snmp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:56,704: DEBUG - Selecting previously unselected package erlang-os-mon.
+2025-12-01 11:36:56,747: DEBUG - Preparing to unpack .../12-erlang-os-mon_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:56,757: DEBUG - Unpacking erlang-os-mon (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:56,875: DEBUG - Selecting previously unselected package erlang-parsetools.
+2025-12-01 11:36:56,915: DEBUG - Preparing to unpack .../13-erlang-parsetools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:56,933: DEBUG - Unpacking erlang-parsetools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:57,082: DEBUG - Selecting previously unselected package erlang-syntax-tools.
+2025-12-01 11:36:57,129: DEBUG - Preparing to unpack .../14-erlang-syntax-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:57,139: DEBUG - Unpacking erlang-syntax-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:57,329: DEBUG - Selecting previously unselected package erlang-tools.
+2025-12-01 11:36:57,424: DEBUG - Preparing to unpack .../15-erlang-tools_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:57,434: DEBUG - Unpacking erlang-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:57,702: DEBUG - Selecting previously unselected package erlang-xmerl.
+2025-12-01 11:36:57,739: DEBUG - Preparing to unpack .../16-erlang-xmerl_1%3a25.2.3+dfsg-1+deb12u3_amd64.deb ...
+2025-12-01 11:36:57,751: DEBUG - Unpacking erlang-xmerl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:36:57,983: DEBUG - Selecting previously unselected package icu-devtools.
+2025-12-01 11:36:58,021: DEBUG - Preparing to unpack .../17-icu-devtools_72.1-3+deb12u1_amd64.deb ...
+2025-12-01 11:36:58,029: DEBUG - Unpacking icu-devtools (72.1-3+deb12u1) ...
+2025-12-01 11:36:58,216: DEBUG - Selecting previously unselected package libbrotli-dev:amd64.
+2025-12-01 11:36:58,257: DEBUG - Preparing to unpack .../18-libbrotli-dev_1.0.9-2+b6_amd64.deb ...
+2025-12-01 11:36:58,266: DEBUG - Unpacking libbrotli-dev:amd64 (1.0.9-2+b6) ...
+2025-12-01 11:36:58,398: DEBUG - Selecting previously unselected package libdeflate-dev:amd64.
+2025-12-01 11:36:58,437: DEBUG - Preparing to unpack .../19-libdeflate-dev_1.14-1_amd64.deb ...
+2025-12-01 11:36:58,445: DEBUG - Unpacking libdeflate-dev:amd64 (1.14-1) ...
+2025-12-01 11:36:58,550: DEBUG - Selecting previously unselected package libfreetype-dev:amd64.
+2025-12-01 11:36:58,589: DEBUG - Preparing to unpack .../20-libfreetype-dev_2.12.1+dfsg-5+deb12u4_amd64.deb ...
+2025-12-01 11:36:58,612: DEBUG - Unpacking libfreetype-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:36:58,874: DEBUG - Selecting previously unselected package libfreetype6-dev:amd64.
+2025-12-01 11:36:58,922: DEBUG - Preparing to unpack .../21-libfreetype6-dev_2.12.1+dfsg-5+deb12u4_amd64.deb ...
+2025-12-01 11:36:58,932: DEBUG - Unpacking libfreetype6-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:36:59,026: DEBUG - Selecting previously unselected package libicu-dev:amd64.
+2025-12-01 11:36:59,081: DEBUG - Preparing to unpack .../22-libicu-dev_72.1-3+deb12u1_amd64.deb ...
+2025-12-01 11:36:59,090: DEBUG - Unpacking libicu-dev:amd64 (72.1-3+deb12u1) ...
+2025-12-01 11:37:00,321: DEBUG - Selecting previously unselected package libjbig-dev:amd64.
+2025-12-01 11:37:00,361: DEBUG - Preparing to unpack .../23-libjbig-dev_2.1-6.1_amd64.deb ...
+2025-12-01 11:37:00,370: DEBUG - Unpacking libjbig-dev:amd64 (2.1-6.1) ...
+2025-12-01 11:37:00,493: DEBUG - Selecting previously unselected package libjpeg62-turbo-dev:amd64.
+2025-12-01 11:37:00,568: DEBUG - Preparing to unpack .../24-libjpeg62-turbo-dev_1%3a2.1.5-2_amd64.deb ...
+2025-12-01 11:37:00,588: DEBUG - Unpacking libjpeg62-turbo-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:37:00,819: DEBUG - Selecting previously unselected package libjpeg-dev:amd64.
+2025-12-01 11:37:00,869: DEBUG - Preparing to unpack .../25-libjpeg-dev_1%3a2.1.5-2_amd64.deb ...
+2025-12-01 11:37:00,876: DEBUG - Unpacking libjpeg-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:37:00,990: DEBUG - Selecting previously unselected package liblerc-dev:amd64.
+2025-12-01 11:37:01,022: DEBUG - Preparing to unpack .../26-liblerc-dev_4.0.0+ds-2_amd64.deb ...
+2025-12-01 11:37:01,034: DEBUG - Unpacking liblerc-dev:amd64 (4.0.0+ds-2) ...
+2025-12-01 11:37:01,223: DEBUG - Selecting previously unselected package liblzma-dev:amd64.
+2025-12-01 11:37:01,272: DEBUG - Preparing to unpack .../27-liblzma-dev_5.4.1-1_amd64.deb ...
+2025-12-01 11:37:01,285: DEBUG - Unpacking liblzma-dev:amd64 (5.4.1-1) ...
+2025-12-01 11:37:01,474: DEBUG - Selecting previously unselected package libsctp1:amd64.
+2025-12-01 11:37:01,510: DEBUG - Preparing to unpack .../28-libsctp1_1.0.19+dfsg-2_amd64.deb ...
+2025-12-01 11:37:01,527: DEBUG - Unpacking libsctp1:amd64 (1.0.19+dfsg-2) ...
+2025-12-01 11:37:01,639: DEBUG - Selecting previously unselected package libzstd-dev:amd64.
+2025-12-01 11:37:01,684: DEBUG - Preparing to unpack .../29-libzstd-dev_1.5.4+dfsg2-5_amd64.deb ...
+2025-12-01 11:37:01,694: DEBUG - Unpacking libzstd-dev:amd64 (1.5.4+dfsg2-5) ...
+2025-12-01 11:37:01,862: DEBUG - Selecting previously unselected package libwebp-dev:amd64.
+2025-12-01 11:37:01,907: DEBUG - Preparing to unpack .../30-libwebp-dev_1.2.4-0.2+deb12u1_amd64.deb ...
+2025-12-01 11:37:01,917: DEBUG - Unpacking libwebp-dev:amd64 (1.2.4-0.2+deb12u1) ...
+2025-12-01 11:37:02,095: DEBUG - Selecting previously unselected package libtiffxx6:amd64.
+2025-12-01 11:37:02,152: DEBUG - Preparing to unpack .../31-libtiffxx6_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:37:02,172: DEBUG - Unpacking libtiffxx6:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:02,310: DEBUG - Selecting previously unselected package libtiff-dev:amd64.
+2025-12-01 11:37:02,387: DEBUG - Preparing to unpack .../32-libtiff-dev_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:37:02,406: DEBUG - Unpacking libtiff-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:02,614: DEBUG - Selecting previously unselected package libtiff5-dev:amd64.
+2025-12-01 11:37:02,672: DEBUG - Preparing to unpack .../33-libtiff5-dev_4.5.0-6+deb12u3_amd64.deb ...
+2025-12-01 11:37:02,682: DEBUG - Unpacking libtiff5-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:02,802: DEBUG - Selecting previously unselected package libxml2-dev:amd64.
+2025-12-01 11:37:02,851: DEBUG - Preparing to unpack .../34-libxml2-dev_2.9.14+dfsg-1.3~deb12u4_amd64.deb ...
+2025-12-01 11:37:02,864: DEBUG - Unpacking libxml2-dev:amd64 (2.9.14+dfsg-1.3~deb12u4) ...
+2025-12-01 11:37:03,127: DEBUG - Selecting previously unselected package libxslt1-dev:amd64.
+2025-12-01 11:37:03,183: DEBUG - Preparing to unpack .../35-libxslt1-dev_1.1.35-1+deb12u3_amd64.deb ...
+2025-12-01 11:37:03,194: DEBUG - Unpacking libxslt1-dev:amd64 (1.1.35-1+deb12u3) ...
+2025-12-01 11:37:03,546: DEBUG - Selecting previously unselected package postgresql-contrib.
+2025-12-01 11:37:03,603: DEBUG - Preparing to unpack .../36-postgresql-contrib_15+248+deb12u1_all.deb ...
+2025-12-01 11:37:03,614: DEBUG - Unpacking postgresql-contrib (15+248+deb12u1) ...
+2025-12-01 11:37:03,773: DEBUG - Selecting previously unselected package rabbitmq-server.
+2025-12-01 11:37:03,821: DEBUG - Preparing to unpack .../37-rabbitmq-server_3.10.8-1.1+deb12u1_all.deb ...
+2025-12-01 11:37:03,837: DEBUG - Unpacking rabbitmq-server (3.10.8-1.1+deb12u1) ...
+2025-12-01 11:37:06,310: DEBUG - Setting up libzstd-dev:amd64 (1.5.4+dfsg2-5) ...
+2025-12-01 11:37:06,335: DEBUG - Setting up erlang-base (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:08,933: DEBUG - Created symlink /etc/systemd/system/multi-user.target.wants/epmd.service -> /lib/systemd/system/epmd.service.
+2025-12-01 11:37:08,933: DEBUG - Created symlink /etc/systemd/system/sockets.target.wants/epmd.socket -> /lib/systemd/system/epmd.socket.
+2025-12-01 11:37:09,789: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:37:09,791: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:37:13,260: DEBUG - Searching for services which depend on erlang and should be started... none found.
+2025-12-01 11:37:13,279: DEBUG - Setting up erlang-xmerl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,306: DEBUG - Setting up libjbig-dev:amd64 (2.1-6.1) ...
+2025-12-01 11:37:13,329: DEBUG - Setting up erlang-syntax-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,352: DEBUG - Setting up libwebp-dev:amd64 (1.2.4-0.2+deb12u1) ...
+2025-12-01 11:37:13,376: DEBUG - Setting up erlang-parsetools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,404: DEBUG - Setting up libjpeg62-turbo-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:37:13,437: DEBUG - Setting up icu-devtools (72.1-3+deb12u1) ...
+2025-12-01 11:37:13,472: DEBUG - Setting up liblerc-dev:amd64 (4.0.0+ds-2) ...
+2025-12-01 11:37:13,500: DEBUG - Setting up erlang-asn1 (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,531: DEBUG - Setting up erlang-tftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,582: DEBUG - Setting up liblzma-dev:amd64 (5.4.1-1) ...
+2025-12-01 11:37:13,614: DEBUG - Setting up libsctp1:amd64 (1.0.19+dfsg-2) ...
+2025-12-01 11:37:13,637: DEBUG - Setting up postgresql-contrib (15+248+deb12u1) ...
+2025-12-01 11:37:13,665: DEBUG - Setting up erlang-mnesia (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,684: DEBUG - Setting up erlang-crypto (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,716: DEBUG - Setting up libtiffxx6:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:13,737: DEBUG - Setting up libdeflate-dev:amd64 (1.14-1) ...
+2025-12-01 11:37:13,763: DEBUG - Setting up libicu-dev:amd64 (72.1-3+deb12u1) ...
+2025-12-01 11:37:13,791: DEBUG - Setting up libbrotli-dev:amd64 (1.0.9-2+b6) ...
+2025-12-01 11:37:13,817: DEBUG - Setting up erlang-runtime-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,840: DEBUG - Setting up libjpeg-dev:amd64 (1:2.1.5-2) ...
+2025-12-01 11:37:13,875: DEBUG - Setting up erlang-tools (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,903: DEBUG - Setting up libfreetype-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:37:13,925: DEBUG - Setting up erlang-snmp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:13,951: DEBUG - Setting up libxml2-dev:amd64 (2.9.14+dfsg-1.3~deb12u4) ...
+2025-12-01 11:37:13,976: DEBUG - Setting up libtiff-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:13,999: DEBUG - Setting up erlang-public-key (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,029: DEBUG - Setting up erlang-ssl (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,056: DEBUG - Setting up libxslt1-dev:amd64 (1.1.35-1+deb12u3) ...
+2025-12-01 11:37:14,083: DEBUG - Setting up erlang-os-mon (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,107: DEBUG - Setting up libtiff5-dev:amd64 (4.5.0-6+deb12u3) ...
+2025-12-01 11:37:14,137: DEBUG - Setting up libfreetype6-dev:amd64 (2.12.1+dfsg-5+deb12u4) ...
+2025-12-01 11:37:14,164: DEBUG - Setting up erlang-eldap (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,188: DEBUG - Setting up erlang-ftp (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,215: DEBUG - Setting up erlang-inets (1:25.2.3+dfsg-1+deb12u3) ...
+2025-12-01 11:37:14,242: DEBUG - Setting up rabbitmq-server (3.10.8-1.1+deb12u1) ...
+2025-12-01 11:37:14,712: DEBUG - Created symlink /etc/systemd/system/multi-user.target.wants/rabbitmq-server.service -> /lib/systemd/system/rabbitmq-server.service.
+2025-12-01 11:37:15,346: DEBUG - /bin/bash: BASH_XTRACEFD: 7: invalid value for trace file descriptor
+2025-12-01 11:37:30,171: DEBUG - Processing triggers for man-db (2.11.2-2) ...
+2025-12-01 11:37:32,243: DEBUG - Processing triggers for libc-bin (2.36-9+deb12u13) ...
+2025-12-01 11:37:32,659: DEBUG - + rm --recursive --force /tmp/tmp.qi4uAGlISP
+2025-12-01 11:37:32,662: DEBUG - + _ynh_apt_package_is_installed taiga-ynh-deps
+2025-12-01 11:37:32,662: DEBUG - + local package=taiga-ynh-deps
+2025-12-01 11:37:32,663: DEBUG - + dpkg-query --show '--showformat=${db:Status-Status}' taiga-ynh-deps
+2025-12-01 11:37:32,663: DEBUG - + grep --quiet '^installed$'
+2025-12-01 11:37:32,699: DEBUG - ++ _ynh_apt_package_is_installed postgresql-15
+2025-12-01 11:37:32,699: DEBUG - ++ local package=postgresql-15
+2025-12-01 11:37:32,705: DEBUG - ++ dpkg-query --show '--showformat=${db:Status-Status}' postgresql-15
+2025-12-01 11:37:32,706: DEBUG - ++ grep --quiet '^installed$'
+2025-12-01 11:37:32,739: DEBUG - ++ echo yes
+2025-12-01 11:37:32,740: DEBUG - + local psql_installed2=yes
+2025-12-01 11:37:32,741: DEBUG - + [[ yes != \y\e\s ]]
+2025-12-01 11:37:32,741: DEBUG - + ynh_exit_properly
+2025-12-01 11:37:32,741: DEBUG - + [[ provision_or_update_apt =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:37:32,844: INFO - Provisioning database...
+2025-12-01 11:37:33,603: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./provision_database"  7>&1']'
+2025-12-01 11:37:33,620: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:37:33,622: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:37:33,623: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:37:33,624: DEBUG - +++ pwd
+2025-12-01 11:37:33,626: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:37:33,626: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:37:33,633: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:37:33,634: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:37:33,671: DEBUG - + ynh_abort_if_errors
+2025-12-01 11:37:33,672: DEBUG - + trap ynh_exit_properly EXIT
+2025-12-01 11:37:33,673: DEBUG - + ynh_psql_create_user taiga **********
+2025-12-01 11:37:33,673: DEBUG - + local user=taiga
+2025-12-01 11:37:33,673: DEBUG - + local pwd=**********
+2025-12-01 11:37:33,673: DEBUG - + sudo --login --user=postgres psql
+2025-12-01 11:37:33,877: DEBUG - CREATE ROLE
+2025-12-01 11:37:33,883: DEBUG - + ynh_psql_create_db taiga taiga
+2025-12-01 11:37:33,883: DEBUG - + local db=taiga
+2025-12-01 11:37:33,884: DEBUG - + local user=taiga
+2025-12-01 11:37:33,884: DEBUG - + local 'sql=CREATE DATABASE taiga;'
+2025-12-01 11:37:33,884: DEBUG - + '[' -n taiga ']'
+2025-12-01 11:37:33,884: DEBUG - + sql+='ALTER DATABASE taiga OWNER TO taiga;'
+2025-12-01 11:37:33,884: DEBUG - + sql+='GRANT ALL PRIVILEGES ON DATABASE taiga TO taiga WITH GRANT OPTION;'
+2025-12-01 11:37:33,884: DEBUG - + sudo --login --user=postgres psql
+2025-12-01 11:37:34,374: DEBUG - CREATE DATABASE
+2025-12-01 11:37:34,380: DEBUG - ALTER DATABASE
+2025-12-01 11:37:34,382: DEBUG - GRANT
+2025-12-01 11:37:34,389: DEBUG - + ynh_exit_properly
+2025-12-01 11:37:34,389: DEBUG - + [[ provision_database =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:37:34,496: DEBUG - Executing command '['sh', '-c', '/bin/bash -x "./install"  7>&1']'
+2025-12-01 11:37:34,505: DEBUG - + source /usr/share/yunohost/helpers
+2025-12-01 11:37:34,508: DEBUG - ++++ dirname -- /usr/share/yunohost/helpers
+2025-12-01 11:37:34,509: DEBUG - +++ cd -- /usr/share/yunohost
+2025-12-01 11:37:34,509: DEBUG - +++ pwd
+2025-12-01 11:37:34,511: DEBUG - ++ SCRIPT_DIR=/usr/share/yunohost
+2025-12-01 11:37:34,512: DEBUG - ++ YNH_HELPERS_VERSION=2.1
+2025-12-01 11:37:34,524: DEBUG - ++ readonly 'XTRACE_ENABLE=set -o xtrace'
+2025-12-01 11:37:34,524: DEBUG - ++ XTRACE_ENABLE='set -o xtrace'
+2025-12-01 11:37:34,566: DEBUG - + source _common.sh
+2025-12-01 11:37:34,568: DEBUG - ++ nodejs_version=18
+2025-12-01 11:37:34,589: INFO - [+...................] > Initializing installation parameters...
+2025-12-01 11:37:34,594: DEBUG - ++ ynh_string_random --length=50
+2025-12-01 11:37:34,695: DEBUG - ++ length=50
+2025-12-01 11:37:34,696: DEBUG - ++ filter=A-Za-z0-9
+2025-12-01 11:37:34,696: DEBUG - ++ head -c 50
+2025-12-01 11:37:34,700: DEBUG - ++ tr --complement --delete A-Za-z0-9
+2025-12-01 11:37:34,706: DEBUG - + secret_key=**********
+2025-12-01 11:37:34,707: DEBUG - ++ ynh_string_random --length=32
+2025-12-01 11:37:34,783: DEBUG - ++ length=32
+2025-12-01 11:37:34,784: DEBUG - ++ filter=A-Za-z0-9
+2025-12-01 11:37:34,784: DEBUG - ++ tr --complement --delete A-Za-z0-9
+2025-12-01 11:37:34,784: DEBUG - ++ head -c 32
+2025-12-01 11:37:34,796: DEBUG - + rabbitmq_pwd=**********
+2025-12-01 11:37:34,796: DEBUG - + rabbitmq_user=taiga
+2025-12-01 11:37:34,796: DEBUG - + ynh_app_setting_set --key=secret_key --value=**********
+2025-12-01 11:37:35,059: DEBUG - + ynh_app_setting_set --key=rabbitmq_user --value=taiga
+2025-12-01 11:37:35,394: DEBUG - + ynh_app_setting_set --key=rabbitmq_pwd --value=**********
+2025-12-01 11:37:35,692: INFO - [#++.................] > Setting up source files...
+2025-12-01 11:37:35,693: DEBUG - + ynh_setup_source --dest_dir=/var/www/taiga/taiga-back --source_id=main
+2025-12-01 11:37:35,970: DEBUG - + keep=
+2025-12-01 11:37:35,971: DEBUG - + full_replace=0
+2025-12-01 11:37:35,971: DEBUG - + source_id=main
+2025-12-01 11:37:35,971: DEBUG - + '[' -e /var/www/taiga/taiga-back/composer.phar ']'
+2025-12-01 11:37:35,980: DEBUG - ++ ynh_read_manifest 'resources.sources["main"]'
+2025-12-01 11:37:35,980: DEBUG - ++ jq '.resources.sources["main"]' --raw-output
+2025-12-01 11:37:35,981: DEBUG - ++ toml_to_json
+2025-12-01 11:37:35,981: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_fsexoi4i/manifest.toml
+2025-12-01 11:37:35,981: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:37:36,087: DEBUG - + local 'sources_json={
+2025-12-01 11:37:36,087: DEBUG -   "url": "https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz",
+2025-12-01 11:37:36,087: DEBUG -   "sha256": "3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e"
+2025-12-01 11:37:36,087: DEBUG - }'
+2025-12-01 11:37:36,088: DEBUG - + jq -re .url
+2025-12-01 11:37:36,148: DEBUG - https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:37:36,150: DEBUG - + local arch_prefix=
+2025-12-01 11:37:36,231: DEBUG - + local src_url=https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:37:36,304: DEBUG - + local src_sum=3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e
+2025-12-01 11:37:36,376: DEBUG - + local src_format=
+2025-12-01 11:37:36,456: DEBUG - + local src_in_subdir=
+2025-12-01 11:37:36,456: DEBUG - + src_in_subdir=true
+2025-12-01 11:37:36,542: DEBUG - + local src_extract=
+2025-12-01 11:37:36,619: DEBUG - + local src_platform=
+2025-12-01 11:37:36,701: DEBUG - + local src_rename=
+2025-12-01 11:37:36,701: DEBUG - + [[ -n https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ]]
+2025-12-01 11:37:36,701: DEBUG - + [[ -n 3582489b7b2af4ba22f455625bcd1c8e102ded0070aee09ddec9f04c3f0be85e ]]
+2025-12-01 11:37:36,701: DEBUG - + [[ -z '' ]]
+2025-12-01 11:37:36,701: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.zip$ ]]
+2025-12-01 11:37:36,701: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*/zipball/.*$ ]]
+2025-12-01 11:37:36,702: DEBUG - + [[ https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.tar\.gz$ ]]
+2025-12-01 11:37:36,702: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:36,702: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:36,704: DEBUG - ++ tr '[:upper:]' '[:lower:]'
+2025-12-01 11:37:36,707: DEBUG - ++ echo tar.gz
+2025-12-01 11:37:36,709: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:36,709: DEBUG - + src_extract=true
+2025-12-01 11:37:36,709: DEBUG - + [[ true != \t\r\u\e ]]
+2025-12-01 11:37:36,710: DEBUG - ++ dirname /var/cache/yunohost/download/taiga/main
+2025-12-01 11:37:36,715: DEBUG - + mkdir -p /var/cache/yunohost/download/taiga
+2025-12-01 11:37:36,723: DEBUG - + src_filename=/var/cache/yunohost/download/taiga/main
+2025-12-01 11:37:36,724: DEBUG - + '[' tar.gz = docker ']'
+2025-12-01 11:37:36,724: DEBUG - + '[' -n https://github.com/taigaio/taiga-back/archive/refs/tags/6.7.0.tar.gz ']'
+2025-12-01 11:37:36,724: DEBUG - + '[' -e /var/cache/yunohost/download/taiga/main ']'
+2025-12-01 11:37:36,725: DEBUG - + sha256sum --check --status
+2025-12-01 11:37:36,748: DEBUG - + '[' '!' -e /var/cache/yunohost/download/taiga/main ']'
+2025-12-01 11:37:36,748: DEBUG - + sha256sum --check --status
+2025-12-01 11:37:36,769: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:37:36,775: DEBUG - + '[' -n '' ']'
+2025-12-01 11:37:36,776: DEBUG - + mkdir --parents /var/www/taiga/taiga-back
+2025-12-01 11:37:36,779: DEBUG - + [[ true == \f\a\l\s\e ]]
+2025-12-01 11:37:36,780: DEBUG - + [[ tar.gz == \d\o\c\k\e\r ]]
+2025-12-01 11:37:36,780: DEBUG - + [[ tar.gz == \z\i\p ]]
+2025-12-01 11:37:36,780: DEBUG - + [[ tar.gz == \x\z ]]
+2025-12-01 11:37:36,780: DEBUG - + [[ tar.gz == \z\s\t ]]
+2025-12-01 11:37:36,780: DEBUG - + strip=()
+2025-12-01 11:37:36,780: DEBUG - + '[' true '!=' false ']'
+2025-12-01 11:37:36,780: DEBUG - + '[' true == true ']'
+2025-12-01 11:37:36,781: DEBUG - + local sub_dirs=1
+2025-12-01 11:37:36,781: DEBUG - + strip=(--strip-components "$sub_dirs")
+2025-12-01 11:37:36,781: DEBUG - + [[ tar.gz =~ ^tar.gz|tar.bz2|tar.xz|tar.zst|tar$ ]]
+2025-12-01 11:37:36,781: DEBUG - + tar --extract --file=/var/cache/yunohost/download/taiga/main --directory=/var/www/taiga/taiga-back --strip-components 1
+2025-12-01 11:37:37,045: DEBUG - + ynh_safe_rm /var/cache/yunohost/download/taiga/main
+2025-12-01 11:37:37,045: DEBUG - + local target=/var/cache/yunohost/download/taiga/main
+2025-12-01 11:37:37,098: DEBUG - + '[' -d /var/cache/yunohost/app_tmp_work_dirs/app_fsexoi4i/patches/main ']'
+2025-12-01 11:37:37,098: DEBUG - + '[' -n '' ']'
+2025-12-01 11:37:37,098: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:37:37,108: DEBUG - + '[' -n /var/www/taiga ']'
+2025-12-01 11:37:37,108: DEBUG - + '[' /var/www/taiga/taiga-back == /var/www/taiga ']'
+2025-12-01 11:37:37,108: DEBUG - + ynh_setup_source --dest_dir=/var/www/taiga/taiga-front --source_id=front
+2025-12-01 11:37:37,376: DEBUG - + keep=
+2025-12-01 11:37:37,377: DEBUG - + full_replace=0
+2025-12-01 11:37:37,377: DEBUG - + source_id=front
+2025-12-01 11:37:37,377: DEBUG - + '[' -e /var/www/taiga/taiga-front/composer.phar ']'
+2025-12-01 11:37:37,377: DEBUG - ++ ynh_read_manifest 'resources.sources["front"]'
+2025-12-01 11:37:37,382: DEBUG - ++ jq '.resources.sources["front"]' --raw-output
+2025-12-01 11:37:37,382: DEBUG - ++ cat /var/cache/yunohost/app_tmp_work_dirs/app_fsexoi4i/manifest.toml
+2025-12-01 11:37:37,389: DEBUG - ++ toml_to_json
+2025-12-01 11:37:37,389: DEBUG - ++ python3 -c 'import toml, json, sys; print(json.dumps(toml.load(sys.stdin)))'
+2025-12-01 11:37:37,501: DEBUG - + local 'sources_json={
+2025-12-01 11:37:37,501: DEBUG -   "url": "https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz",
+2025-12-01 11:37:37,501: DEBUG -   "sha256": "037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522"
+2025-12-01 11:37:37,502: DEBUG - }'
+2025-12-01 11:37:37,502: DEBUG - + jq -re .url
+2025-12-01 11:37:37,559: DEBUG - https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:37:37,559: DEBUG - + local arch_prefix=
+2025-12-01 11:37:37,640: DEBUG - + local src_url=https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz
+2025-12-01 11:37:37,709: DEBUG - + local src_sum=037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522
+2025-12-01 11:37:37,774: DEBUG - + local src_format=
+2025-12-01 11:37:37,840: DEBUG - + local src_in_subdir=
+2025-12-01 11:37:37,840: DEBUG - + src_in_subdir=true
+2025-12-01 11:37:37,898: DEBUG - + local src_extract=
+2025-12-01 11:37:37,986: DEBUG - + local src_platform=
+2025-12-01 11:37:38,061: DEBUG - + local src_rename=
+2025-12-01 11:37:38,062: DEBUG - + [[ -n https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ]]
+2025-12-01 11:37:38,062: DEBUG - + [[ -n 037b80779d7c702e5a8a06abefe5b7ab6b2f997e73334aea628fb0fc70e37522 ]]
+2025-12-01 11:37:38,062: DEBUG - + [[ -z '' ]]
+2025-12-01 11:37:38,062: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.zip$ ]]
+2025-12-01 11:37:38,062: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*/zipball/.*$ ]]
+2025-12-01 11:37:38,063: DEBUG - + [[ https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz =~ ^.*\.tar\.gz$ ]]
+2025-12-01 11:37:38,063: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:38,063: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:38,064: DEBUG - ++ echo tar.gz
+2025-12-01 11:37:38,064: DEBUG - ++ tr '[:upper:]' '[:lower:]'
+2025-12-01 11:37:38,068: DEBUG - + src_format=tar.gz
+2025-12-01 11:37:38,068: DEBUG - + src_extract=true
+2025-12-01 11:37:38,069: DEBUG - + [[ true != \t\r\u\e ]]
+2025-12-01 11:37:38,069: DEBUG - ++ dirname /var/cache/yunohost/download/taiga/front
+2025-12-01 11:37:38,073: DEBUG - + mkdir -p /var/cache/yunohost/download/taiga
+2025-12-01 11:37:38,076: DEBUG - + src_filename=/var/cache/yunohost/download/taiga/front
+2025-12-01 11:37:38,077: DEBUG - + '[' tar.gz = docker ']'
+2025-12-01 11:37:38,077: DEBUG - + '[' -n https://github.com/taigaio/taiga-front/archive/refs/tags/6.7.0.tar.gz ']'
+2025-12-01 11:37:38,077: DEBUG - + '[' -e /var/cache/yunohost/download/taiga/front ']'
+2025-12-01 11:37:38,078: DEBUG - + sha256sum --check --status
+2025-12-01 11:37:38,114: DEBUG - + '[' '!' -e /var/cache/yunohost/download/taiga/front ']'
+2025-12-01 11:37:38,121: DEBUG - + sha256sum --check --status
+2025-12-01 11:37:38,153: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:37:38,156: DEBUG - + '[' -n '' ']'
+2025-12-01 11:37:38,157: DEBUG - + mkdir --parents /var/www/taiga/taiga-front
+2025-12-01 11:37:38,161: DEBUG - + [[ true == \f\a\l\s\e ]]
+2025-12-01 11:37:38,161: DEBUG - + [[ tar.gz == \d\o\c\k\e\r ]]
+2025-12-01 11:37:38,161: DEBUG - + [[ tar.gz == \z\i\p ]]
+2025-12-01 11:37:38,161: DEBUG - + [[ tar.gz == \x\z ]]
+2025-12-01 11:37:38,162: DEBUG - + [[ tar.gz == \z\s\t ]]
+2025-12-01 11:37:38,162: DEBUG - + strip=()
+2025-12-01 11:37:38,162: DEBUG - + '[' true '!=' false ']'
+2025-12-01 11:37:38,162: DEBUG - + '[' true == true ']'
+2025-12-01 11:37:38,162: DEBUG - + local sub_dirs=1
+2025-12-01 11:37:38,162: DEBUG - + strip=(--strip-components "$sub_dirs")
+2025-12-01 11:37:38,162: DEBUG - + [[ tar.gz =~ ^tar.gz|tar.bz2|tar.xz|tar.zst|tar$ ]]
+2025-12-01 11:37:38,163: DEBUG - + tar --extract --file=/var/cache/yunohost/download/taiga/front --directory=/var/www/taiga/taiga-front --strip-components 1
+2025-12-01 11:37:38,606: DEBUG - + ynh_safe_rm /var/cache/yunohost/download/taiga/front
+2025-12-01 11:37:38,606: DEBUG - + local target=/var/cache/yunohost/download/taiga/front
+2025-12-01 11:37:38,642: DEBUG - + '[' -d /var/cache/yunohost/app_tmp_work_dirs/app_fsexoi4i/patches/front ']'
+2025-12-01 11:37:38,643: DEBUG - + '[' -n '' ']'
+2025-12-01 11:37:38,643: DEBUG - + rm -rf /var/cache/yunohost/files_to_keep_during_setup_source/
+2025-12-01 11:37:38,650: DEBUG - + '[' -n /var/www/taiga ']'
+2025-12-01 11:37:38,650: DEBUG - + '[' /var/www/taiga/taiga-front == /var/www/taiga ']'
+2025-12-01 11:37:38,654: INFO - [###++...............] > Configuring RabbitMQ...
+2025-12-01 11:37:38,655: DEBUG - + ynh_exec_warn_less rabbitmqctl add_user taiga **********
+2025-12-01 11:37:38,663: WARNING - ./install: line 38: ynh_exec_warn_less: command not found
+2025-12-01 11:37:38,665: WARNING - ./install: line 39: ynh_exec_warn_less: command not found
+2025-12-01 11:37:38,666: DEBUG - + true
+2025-12-01 11:37:38,666: DEBUG - + ynh_exec_warn_less rabbitmqctl add_vhost taiga
+2025-12-01 11:37:38,666: DEBUG - + true
+2025-12-01 11:37:38,666: DEBUG - + ynh_exec_warn_less rabbitmqctl set_permissions -p taiga taiga '.*' '.*' '.*'
+2025-12-01 11:37:38,670: WARNING - ./install: line 40: ynh_exec_warn_less: command not found
+2025-12-01 11:37:38,671: DEBUG - + ynh_exit_properly
+2025-12-01 11:37:38,671: DEBUG - + local exit_code=127
+2025-12-01 11:37:38,671: DEBUG - + [[ install =~ ^install$|^upgrade$|^restore$ ]]
+2025-12-01 11:37:38,675: DEBUG - + '[' 127 -eq 0 ']'
+2025-12-01 11:37:39,281: ERROR - Unable to install taiga: An error occurred inside the app installation script

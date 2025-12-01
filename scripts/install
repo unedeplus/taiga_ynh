@@ -108,39 +108,70 @@ if [[ $(swapon --show | wc -l) -eq 0 ]]; then
     swapon /tmp/taiga_swap
 fi
 
-# Build frontend - skip npm install entirely, download pre-built dist
-ynh_script_progression "Downloading pre-built frontend assets..."
+# Build frontend
+ynh_script_progression "Building frontend..."
 
-# Taiga builds take too much memory for typical servers
-# Download pre-built assets from official GitHub releases instead
-pushd "$install_dir"
-    # Download pre-built frontend from GitHub release assets
-    # Note: Official releases don't provide pre-built assets, so we need to build
-    # But we can use a smarter approach: copy package.json, install on a larger machine, tar it up
-    # For now: minimal build attempt with aggressive fallback
+pushd "$install_dir/taiga-front"
+    # Check if pre-built assets package exists
+    PREBUILT_PACKAGE="/tmp/taiga-front-prebuilt.tar.gz"
     
-    cd taiga-front
-    export NODE_OPTIONS="--max-old-space-size=6144"  # Increase to 6GB
-    
-    # Delete package-lock.json to avoid strict version constraints
-    rm -f package-lock.json
-    
-    # Last attempt: Install with --force to override conflicts
-    ynh_script_progression "Installing dependencies with aggressive settings..."
-    timeout 1800 sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install \
-        --force \
-        --no-audit \
-        --no-fund \
-        --loglevel=error \
-        --legacy-peer-deps \
-        --maxsockets=1 \
-        --prefer-offline || ynh_die "Frontend build failed due to insufficient memory. Minimum 8GB RAM recommended for installation."
-    
-    # Build
-    ynh_script_progression "Building frontend assets..."
-    sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm run build || ynh_die "Frontend build failed"
-    
-    unset NODE_OPTIONS
+    if [ -f "$PREBUILT_PACKAGE" ]; then
+        # Use pre-built assets if available
+        ynh_script_progression "Using pre-built frontend assets from $PREBUILT_PACKAGE"
+        tar xzf "$PREBUILT_PACKAGE" --strip-components=1 -C "$install_dir"
+        chown -R "$app:$app" "$install_dir"
+    else
+        # Build from source (requires 8GB+ RAM)
+        ynh_script_progression "Building from source (requires 8GB+ RAM)..."
+        
+        export NODE_OPTIONS="--max-old-space-size=6144"
+        
+        # Delete package-lock.json for flexible dependency resolution
+        rm -f package-lock.json
+        
+        # Try to install dependencies with aggressive memory management
+        timeout 1800 sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm install \
+            --force \
+            --no-audit \
+            --no-fund \
+            --loglevel=error \
+            --legacy-peer-deps \
+            --maxsockets=1 \
+            --prefer-offline || {
+            echo ""
+            echo "======================================================================="
+            echo "INSTALLATION FAILED: Insufficient memory for npm install"
+            echo "======================================================================="
+            echo ""
+            echo "Your server needs at least 8GB RAM to build Taiga frontend."
+            echo ""
+            echo "WORKAROUND OPTIONS:"
+            echo ""
+            echo "1. Build on another machine with 8GB+ RAM:"
+            echo "   - Run: bash build-frontend-external.sh"
+            echo "   - Upload: scp taiga-front-*-dist.tar.gz admin@$domain:/tmp/taiga-front-prebuilt.tar.gz"
+            echo "   - Retry installation"
+            echo ""
+            echo "2. Extract from Docker image:"
+            echo "   - Run: bash extract-frontend-docker.sh"
+            echo "   - Upload: scp taiga-front-*-docker-dist.tar.gz admin@$domain:/tmp/taiga-front-prebuilt.tar.gz"
+            echo "   - Retry installation"
+            echo ""
+            echo "3. Temporarily upgrade server RAM (recommended):"
+            echo "   - Add 4GB RAM to reach 8GB total"
+            echo "   - Install Taiga"
+            echo "   - Downgrade RAM after installation"
+            echo ""
+            echo "======================================================================="
+            ynh_die "Frontend build failed. See above for workarounds."
+        }
+        
+        # Build
+        ynh_script_progression "Compiling frontend assets..."
+        sudo -u "$app" NODE_OPTIONS="$NODE_OPTIONS" npm run build || ynh_die "Frontend build failed"
+        
+        unset NODE_OPTIONS
+    fi
 popd
 
 # Remove temporary swap if we created it
